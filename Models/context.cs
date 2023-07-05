@@ -1043,7 +1043,7 @@ public partial class context : DbContext
                 .HasMaxLength(14)
                 .IsUnicode(false)
                 .HasColumnName("CLI_CODIGO");
-            entity.Property(e => e.CbrCodigo)
+            /*entity.Property(e => e.CbrCodigo)
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("CBR_CODIGO");
@@ -1075,23 +1075,23 @@ public partial class context : DbContext
             entity.Property(e => e.CliContribuyente)
                 .HasMaxLength(1)
                 .IsUnicode(false)
-                .HasColumnName("CLI_CONTRIBUYENTE");
+                .HasColumnName("CLI_CONTRIBUYENTE"); */
             entity.Property(e => e.CliCorreo)
                 .HasMaxLength(200)
                 .IsUnicode(false)
                 .HasDefaultValueSql("'diego.quishpe.mecanica.automotriz@gmail.com'")
                 .HasColumnName("CLI_CORREO");
-            entity.Property(e => e.CliDescuento)
+            /*entity.Property(e => e.CliDescuento)
                 .HasColumnType("FLOAT")
                 .HasColumnName("CLI_DESCUENTO");
             entity.Property(e => e.CliDiacredit)
                 .HasColumnType("NUMBER(38)")
-                .HasColumnName("CLI_DIACREDIT");
+                .HasColumnName("CLI_DIACREDIT");*/
             entity.Property(e => e.CliDireccion1)
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("CLI_DIRECCION1");
-            entity.Property(e => e.CliDireccion2)
+            /*entity.Property(e => e.CliDireccion2)
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("CLI_DIRECCION2");
@@ -1128,12 +1128,12 @@ public partial class context : DbContext
             entity.Property(e => e.CliLista)
                 .HasMaxLength(1)
                 .IsUnicode(false)
-                .HasColumnName("CLI_LISTA");
+                .HasColumnName("CLI_LISTA"); */
             entity.Property(e => e.CliNombre)
                 .HasMaxLength(300)
                 .IsUnicode(false)
                 .HasColumnName("CLI_NOMBRE");
-            entity.Property(e => e.CliNombrec)
+            /*entity.Property(e => e.CliNombrec)
                 .HasMaxLength(15)
                 .IsUnicode(false)
                 .HasColumnName("CLI_NOMBREC");
@@ -1154,7 +1154,7 @@ public partial class context : DbContext
             entity.Property(e => e.CliRucide)
                 .HasMaxLength(15)
                 .IsUnicode(false)
-                .HasColumnName("CLI_RUCIDE");
+                .HasColumnName("CLI_RUCIDE"); */
             entity.Property(e => e.CliSaldo)
                 .HasColumnType("FLOAT")
                 .HasColumnName("CLI_SALDO");
@@ -1162,19 +1162,19 @@ public partial class context : DbContext
                 .HasMaxLength(15)
                 .IsUnicode(false)
                 .HasColumnName("CLI_TELEFONO1");
-            entity.Property(e => e.CliTelefono2)
+            /*entity.Property(e => e.CliTelefono2)
                 .HasMaxLength(15)
                 .IsUnicode(false)
                 .HasColumnName("CLI_TELEFONO2");
             entity.Property(e => e.CliTipo)
                 .HasMaxLength(3)
                 .IsUnicode(false)
-                .HasColumnName("CLI_TIPO");
+                .HasColumnName("CLI_TIPO"); */
             entity.Property(e => e.CliTipoide)
                 .HasMaxLength(1)
                 .IsUnicode(false)
                 .HasColumnName("CLI_TIPOIDE");
-            entity.Property(e => e.CliTrfiva)
+            /*entity.Property(e => e.CliTrfiva)
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("CLI_TRFIVA");
@@ -1220,7 +1220,7 @@ public partial class context : DbContext
             entity.Property(e => e.VenCodigo)
                 .HasMaxLength(5)
                 .IsUnicode(false)
-                .HasColumnName("VEN_CODIGO");
+                .HasColumnName("VEN_CODIGO"); */
         });
 
         modelBuilder.Entity<VenVhcspcf>(entity =>

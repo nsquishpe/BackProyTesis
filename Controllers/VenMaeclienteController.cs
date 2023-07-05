@@ -2,6 +2,7 @@
 using BackProyTesis.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace BackProyTesis.Controllers
 {
@@ -19,6 +20,11 @@ namespace BackProyTesis.Controllers
         public async Task<List<VenMaecliente>> Listar(string anio)
         {
             return await _logic.Listar(anio);
+        }
+        [HttpGet("{anio}/{codigo}")]
+        public async Task<ActionResult<VenMaecliente>?> BuscarPorId(string anio, string codigo)
+        {
+            return await _logic.BuscarPorId(anio, codigo);
         }
     }
 }
