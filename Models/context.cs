@@ -662,7 +662,7 @@ public partial class context : DbContext
                 .HasMaxLength(4)
                 .IsUnicode(false)
                 .HasColumnName("ANIO");
-            entity.Property(e => e.AsiNro)
+            /*entity.Property(e => e.AsiNro)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("ASI_NRO");
@@ -673,7 +673,7 @@ public partial class context : DbContext
             entity.Property(e => e.BodCodigo)
                 .HasMaxLength(5)
                 .IsUnicode(false)
-                .HasColumnName("BOD_CODIGO");
+                .HasColumnName("BOD_CODIGO"); */
             entity.Property(e => e.CliCodigo)
                 .HasMaxLength(14)
                 .IsUnicode(false)
@@ -686,12 +686,12 @@ public partial class context : DbContext
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasColumnName("DIA");
-            entity.Property(e => e.EmpAsesor)
+            /*entity.Property(e => e.EmpAsesor)
                 .HasPrecision(10)
                 .HasColumnName("EMP_ASESOR");
             entity.Property(e => e.EmpAsesor2)
                 .HasPrecision(10)
-                .HasColumnName("EMP_ASESOR_2");
+                .HasColumnName("EMP_ASESOR_2"); 
             entity.Property(e => e.EncfacAutorizacionFe)
                 .HasMaxLength(60)
                 .IsUnicode(false)
@@ -699,20 +699,20 @@ public partial class context : DbContext
             entity.Property(e => e.EncfacBanco)
                 .HasMaxLength(20)
                 .IsUnicode(false)
-                .HasColumnName("ENCFAC_BANCO");
+                .HasColumnName("ENCFAC_BANCO"); */
             entity.Property(e => e.EncfacBasecero)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ENCFAC_BASECERO");
-            entity.Property(e => e.EncfacBaseice)
+            /*entity.Property(e => e.EncfacBaseice)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ENCFAC_BASEICE");
             entity.Property(e => e.EncfacBaseimp)
                 .HasColumnType("FLOAT")
-                .HasColumnName("ENCFAC_BASEIMP");
+                .HasColumnName("ENCFAC_BASEIMP"); */
             entity.Property(e => e.EncfacBaseiva)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ENCFAC_BASEIVA");
-            entity.Property(e => e.EncfacCarro)
+            /*entity.Property(e => e.EncfacCarro)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_CARRO");
@@ -730,12 +730,12 @@ public partial class context : DbContext
             entity.Property(e => e.EncfacClinombre)
                 .HasMaxLength(60)
                 .IsUnicode(false)
-                .HasColumnName("ENCFAC_CLINOMBRE");
+                .HasColumnName("ENCFAC_CLINOMBRE"); */
             entity.Property(e => e.EncfacComentario)
                 .HasMaxLength(200)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_COMENTARIO");
-            entity.Property(e => e.EncfacComprobante)
+            /*entity.Property(e => e.EncfacComprobante)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_COMPROBANTE");
@@ -753,18 +753,18 @@ public partial class context : DbContext
             entity.Property(e => e.EncfacDireccion)
                 .HasMaxLength(50)
                 .IsUnicode(false)
-                .HasColumnName("ENCFAC_DIRECCION");
+                .HasColumnName("ENCFAC_DIRECCION"); */
             entity.Property(e => e.EncfacEstado)
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_ESTADO");
-            entity.Property(e => e.EncfacEstadoFe)
+            /*entity.Property(e => e.EncfacEstadoFe)
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_ESTADO_FE");
             entity.Property(e => e.EncfacFechaautFe)
                 .HasColumnType("DATE")
-                .HasColumnName("ENCFAC_FECHAAUT_FE");
+                .HasColumnName("ENCFAC_FECHAAUT_FE"); */
             entity.Property(e => e.EncfacFechaemision)
                 .HasColumnType("DATE")
                 .HasColumnName("ENCFAC_FECHAEMISION");
@@ -774,16 +774,16 @@ public partial class context : DbContext
             entity.Property(e => e.EncfacFechavencimiento)
                 .HasColumnType("DATE")
                 .HasColumnName("ENCFAC_FECHAVENCIMIENTO");
-            entity.Property(e => e.EncfacFlag)
+            /*entity.Property(e => e.EncfacFlag)
                 .IsRequired()
                 .HasPrecision(1)
                 .HasDefaultValueSql("0                     ")
-                .HasColumnName("ENCFAC_FLAG");
+                .HasColumnName("ENCFAC_FLAG");*/
             entity.Property(e => e.EncfacFormapago)
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_FORMAPAGO");
-            entity.Property(e => e.EncfacFrmtfcnv)
+            /*entity.Property(e => e.EncfacFrmtfcnv)
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_FRMTFCNV");
@@ -798,12 +798,12 @@ public partial class context : DbContext
             entity.Property(e => e.EncfacIdcretri)
                 .HasMaxLength(2)
                 .IsUnicode(false)
-                .HasColumnName("ENCFAC_IDCRETRI");
+                .HasColumnName("ENCFAC_IDCRETRI"); */
             entity.Property(e => e.EncfacImpreso)
                 .HasMaxLength(1)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_IMPRESO");
-            entity.Property(e => e.EncfacIva)
+            /*entity.Property(e => e.EncfacIva)
                 .HasMaxLength(1)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_IVA");
@@ -864,11 +864,11 @@ public partial class context : DbContext
                 .HasColumnName("ENCFAC_PORCEICE");
             entity.Property(e => e.EncfacPorceint)
                 .HasColumnType("FLOAT")
-                .HasColumnName("ENCFAC_PORCEINT");
+                .HasColumnName("ENCFAC_PORCEINT"); */
             entity.Property(e => e.EncfacPorceiva)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ENCFAC_PORCEIVA");
-            entity.Property(e => e.EncfacPorcerec)
+            /*entity.Property(e => e.EncfacPorcerec)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ENCFAC_PORCEREC");
             entity.Property(e => e.EncfacPorcertc)
@@ -889,12 +889,12 @@ public partial class context : DbContext
                 .HasMaxLength(1)
                 .IsUnicode(false)
                 .HasDefaultValueSql("'0'")
-                .HasColumnName("ENCFAC_PVPCOSTO");
+                .HasColumnName("ENCFAC_PVPCOSTO"); */
             entity.Property(e => e.EncfacReferencia)
                 .HasMaxLength(15)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_REFERENCIA");
-            entity.Property(e => e.EncfacRevisadofisico)
+            /*entity.Property(e => e.EncfacRevisadofisico)
                 .HasMaxLength(1)
                 .IsUnicode(false)
                 .HasColumnName("ENCFAC_REVISADOFISICO");
@@ -945,14 +945,14 @@ public partial class context : DbContext
             entity.Property(e => e.EncfacTipoide)
                 .HasMaxLength(1)
                 .IsUnicode(false)
-                .HasColumnName("ENCFAC_TIPOIDE");
+                .HasColumnName("ENCFAC_TIPOIDE"); */
             entity.Property(e => e.EncfacTotal)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ENCFAC_TOTAL");
             entity.Property(e => e.EncfacTotalneto)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ENCFAC_TOTALNETO");
-            entity.Property(e => e.EncfacTotalretenido)
+            /*entity.Property(e => e.EncfacTotalretenido)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ENCFAC_TOTALRETENIDO");
             entity.Property(e => e.EncfacValorcar)
@@ -969,11 +969,11 @@ public partial class context : DbContext
                 .HasColumnName("ENCFAC_VALORICE");
             entity.Property(e => e.EncfacValorint)
                 .HasColumnType("FLOAT")
-                .HasColumnName("ENCFAC_VALORINT");
+                .HasColumnName("ENCFAC_VALORINT"); */
             entity.Property(e => e.EncfacValoriva)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ENCFAC_VALORIVA");
-            entity.Property(e => e.EncfacValorrec)
+            /*entity.Property(e => e.EncfacValorrec)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ENCFAC_VALORREC");
             entity.Property(e => e.EncfacValorrtc)
@@ -998,22 +998,22 @@ public partial class context : DbContext
             entity.Property(e => e.MaeserifactSerie)
                 .HasMaxLength(10)
                 .IsUnicode(false)
-                .HasColumnName("MAESERIFACT_SERIE");
+                .HasColumnName("MAESERIFACT_SERIE"); */
             entity.Property(e => e.Mes)
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasColumnName("MES");
-            entity.Property(e => e.TrnretencionFecemision)
+            /*entity.Property(e => e.TrnretencionFecemision)
                 .HasColumnType("DATE")
-                .HasColumnName("TRNRETENCION_FECEMISION");
+                .HasColumnName("TRNRETENCION_FECEMISION");*/
             entity.Property(e => e.UsuIdentificacion)
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("USU_IDENTIFICACION");
-            entity.Property(e => e.VenCodigo)
+            /*entity.Property(e => e.VenCodigo)
                 .HasMaxLength(5)
                 .IsUnicode(false)
-                .HasColumnName("VEN_CODIGO");
+                .HasColumnName("VEN_CODIGO");*/
 
             entity.HasOne(d => d.ComCodigoNavigation).WithMany(p => p.VenEncfacs)
                 .HasForeignKey(d => d.ComCodigo)

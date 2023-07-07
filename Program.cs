@@ -19,6 +19,15 @@ builder.Services.AddDbContext<context>(x =>
 builder.Services.AddScoped<Data_Cliente>();
 builder.Services.AddScoped<Logic_Cliente>();
 
+// Agregar la configuración para CabFactura
+builder.Services.AddScoped<Data_Encfac>();
+builder.Services.AddScoped<Logic_Encfac>();
+
+// Agregar la configuración para Vehiculos
+builder.Services.AddScoped<Data_Vehiculo>();
+builder.Services.AddScoped<Logic_Vehiculo>();
+
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 //builder.Services.AddEndpointsApiExplorer();

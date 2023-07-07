@@ -26,5 +26,10 @@ namespace BackProyTesis.Controllers
         {
             return await _logic.BuscarPorId(anio, codigo);
         }
+        [HttpGet("cont/{anio}/{codigo}")]
+        public async Task<ActionResult<List<VenMaecliente>>?> BuscarCont(string anio, string codigo)
+        {
+            return await _logic.BuscarCont(anio, codigo);
+        }
     }
 }

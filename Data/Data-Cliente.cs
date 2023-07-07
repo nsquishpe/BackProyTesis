@@ -26,5 +26,16 @@ namespace BackProyTesis.Data
             else
                 return null;
         }
+        public async Task<ActionResult<List<VenMaecliente>>?> BuscarCont(string anio, string codigo)
+        {
+            var clientes = await _context.VenMaeclientes
+                .Where(c => c.Anio == anio && c.CliCodigo.Contains(codigo))
+                .ToListAsync();
+
+            if (clientes.Count == 0)
+                return null;
+
+            return clientes;
+        }
     }
 }

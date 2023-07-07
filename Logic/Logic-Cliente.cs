@@ -22,5 +22,9 @@ namespace BackProyTesis.Logic
         {
             return await _data.BuscarPorId(anio, codigo);
         }
+        public async Task<ActionResult<List<VenMaecliente>>?> BuscarCont(string anio, string codigo)
+        {
+            return await _data.BuscarCont(anio, codigo); 
+        }
     }
 }
