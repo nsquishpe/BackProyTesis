@@ -27,6 +27,10 @@ builder.Services.AddScoped<Logic_Encfac>();
 builder.Services.AddScoped<Data_Vehiculo>();
 builder.Services.AddScoped<Logic_Vehiculo>();
 
+// Agregar la configuración para DetFactura
+builder.Services.AddScoped<Data_Detfac>();
+builder.Services.AddScoped<Logic_Detfac>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -492,7 +492,7 @@ public partial class context : DbContext
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("BOD_CODIGO");
-            entity.Property(e => e.DetcotLinea)
+            /*entity.Property(e => e.DetcotLinea)
                 .HasColumnType("NUMBER")
                 .HasColumnName("DETCOT_LINEA");
             entity.Property(e => e.DetfacBasecero)
@@ -503,7 +503,7 @@ public partial class context : DbContext
                 .HasColumnName("DETFAC_BASEICE");
             entity.Property(e => e.DetfacBaseiva)
                 .HasColumnType("FLOAT")
-                .HasColumnName("DETFAC_BASEIVA");
+                .HasColumnName("DETFAC_BASEIVA"); */
             entity.Property(e => e.DetfacCantidad)
                 .HasColumnType("FLOAT")
                 .HasColumnName("DETFAC_CANTIDAD");
@@ -511,10 +511,10 @@ public partial class context : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("DETFAC_CODIGO");
-            entity.Property(e => e.DetfacCodigoref)
+            /*entity.Property(e => e.DetfacCodigoref)
                 .HasMaxLength(3)
                 .IsUnicode(false)
-                .HasColumnName("DETFAC_CODIGOREF");
+                .HasColumnName("DETFAC_CODIGOREF");*/
             entity.Property(e => e.DetfacDescripcion)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -522,7 +522,7 @@ public partial class context : DbContext
             entity.Property(e => e.DetfacDescuento)
                 .HasColumnType("FLOAT")
                 .HasColumnName("DETFAC_DESCUENTO");
-            entity.Property(e => e.DetfacDespacho)
+            /*entity.Property(e => e.DetfacDespacho)
                 .HasColumnType("FLOAT")
                 .HasColumnName("DETFAC_DESPACHO");
             entity.Property(e => e.DetfacEmpleado)
@@ -536,21 +536,21 @@ public partial class context : DbContext
                 .HasColumnName("DETFAC_FLAG");
             entity.Property(e => e.DetfacIce)
                 .HasColumnType("FLOAT")
-                .HasColumnName("DETFAC_ICE");
+                .HasColumnName("DETFAC_ICE");*/
             entity.Property(e => e.DetfacIva)
                 .HasColumnType("FLOAT")
                 .HasColumnName("DETFAC_IVA");
-            entity.Property(e => e.DetfacLinorgprom)
+            /*entity.Property(e => e.DetfacLinorgprom)
                 .HasColumnType("NUMBER(38)")
                 .HasColumnName("DETFAC_LINORGPROM");
             entity.Property(e => e.DetfacLista)
                 .HasMaxLength(3)
                 .IsUnicode(false)
-                .HasColumnName("DETFAC_LISTA");
+                .HasColumnName("DETFAC_LISTA"); */
             entity.Property(e => e.DetfacOrden)
                 .HasPrecision(10)
                 .HasColumnName("DETFAC_ORDEN");
-            entity.Property(e => e.DetfacPorcdscto2)
+            /*entity.Property(e => e.DetfacPorcdscto2)
                 .HasColumnType("FLOAT")
                 .HasColumnName("DETFAC_PORCDSCTO2");
             entity.Property(e => e.DetfacPorceice)
@@ -564,11 +564,11 @@ public partial class context : DbContext
                 .HasColumnName("DETFAC_PRCEF");
             entity.Property(e => e.DetfacPrcta)
                 .HasColumnType("FLOAT")
-                .HasColumnName("DETFAC_PRCTA");
+                .HasColumnName("DETFAC_PRCTA"); */
             entity.Property(e => e.DetfacPrecio)
                 .HasColumnType("FLOAT")
                 .HasColumnName("DETFAC_PRECIO");
-            entity.Property(e => e.DetfacPromocion)
+            /*entity.Property(e => e.DetfacPromocion)
                 .HasMaxLength(1)
                 .IsUnicode(false)
                 .HasDefaultValueSql("0")
@@ -585,7 +585,7 @@ public partial class context : DbContext
             entity.Property(e => e.DetfacTipo)
                 .HasMaxLength(1)
                 .IsUnicode(false)
-                .HasColumnName("DETFAC_TIPO");
+                .HasColumnName("DETFAC_TIPO"); */
             entity.Property(e => e.DetfacTipodet)
                 .HasMaxLength(1)
                 .IsUnicode(false)
@@ -593,87 +593,87 @@ public partial class context : DbContext
             entity.Property(e => e.DetfacTotal)
                 .HasColumnType("FLOAT")
                 .HasColumnName("DETFAC_TOTAL");
-            entity.Property(e => e.DetfacTrczsrvc)
-                .HasMaxLength(1)
-                .IsUnicode(false)
-                .HasColumnName("DETFAC_TRCZSRVC");
+            /* entity.Property(e => e.DetfacTrczsrvc)
+                 .HasMaxLength(1)
+                 .IsUnicode(false)
+                 .HasColumnName("DETFAC_TRCZSRVC");
             entity.Property(e => e.DetfacTribice)
-                .HasMaxLength(1)
-                .IsUnicode(false)
-                .HasColumnName("DETFAC_TRIBICE");
-            entity.Property(e => e.DetfacTribiva)
-                .HasMaxLength(1)
-                .IsUnicode(false)
-                .HasColumnName("DETFAC_TRIBIVA");
-            entity.Property(e => e.DetfacUnidad)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("DETFAC_UNIDAD");
+                 .HasMaxLength(1)
+                 .IsUnicode(false)
+                 .HasColumnName("DETFAC_TRIBICE"); */
+             entity.Property(e => e.DetfacTribiva)
+                 .HasMaxLength(1)
+                 .IsUnicode(false)
+                 .HasColumnName("DETFAC_TRIBIVA");
+            /* entity.Property(e => e.DetfacUnidad)
+                 .HasMaxLength(10)
+                 .IsUnicode(false)
+                 .HasColumnName("DETFAC_UNIDAD");
             entity.Property(e => e.DetfacValpgemp)
-                .HasColumnType("FLOAT")
-                .HasColumnName("DETFAC_VALPGEMP");
+                 .HasColumnType("FLOAT")
+                 .HasColumnName("DETFAC_VALPGEMP");
             entity.Property(e => e.DetgreLinea)
-                .HasColumnType("NUMBER")
-                .HasColumnName("DETGRE_LINEA");
-            entity.Property(e => e.DetpedLinea)
-                .HasColumnType("NUMBER")
-                .HasColumnName("DETPED_LINEA");
+                 .HasColumnType("NUMBER")
+                 .HasColumnName("DETGRE_LINEA");
+            /* entity.Property(e => e.DetpedLinea)
+                 .HasColumnType("NUMBER")
+                 .HasColumnName("DETPED_LINEA");
             entity.Property(e => e.EnccotNumero)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("ENCCOT_NUMERO");
-            entity.Property(e => e.EncgreNumero)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("ENCGRE_NUMERO");
-            entity.Property(e => e.EncpedNumero)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("ENCPED_NUMERO");
-            entity.Property(e => e.MaeprmCodigo)
-                .HasColumnType("NUMBER")
-                .HasColumnName("MAEPRM_CODIGO");
-            entity.Property(e => e.UniSimbolo)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("UNI_SIMBOLO");
+                 .HasMaxLength(50)
+                 .IsUnicode(false)
+                 .HasColumnName("ENCCOT_NUMERO");
+             entity.Property(e => e.EncgreNumero)
+                 .HasMaxLength(50)
+                 .IsUnicode(false)
+                 .HasColumnName("ENCGRE_NUMERO");
+             entity.Property(e => e.EncpedNumero)
+                 .HasMaxLength(50)
+                 .IsUnicode(false)
+                 .HasColumnName("ENCPED_NUMERO");
+             entity.Property(e => e.MaeprmCodigo)
+                 .HasColumnType("NUMBER")
+                 .HasColumnName("MAEPRM_CODIGO");
+             entity.Property(e => e.UniSimbolo)
+                 .HasMaxLength(10)
+                 .IsUnicode(false)
+                 .HasColumnName("UNI_SIMBOLO"); */
 
-            entity.HasOne(d => d.VenEncfac).WithMany(p => p.VenDetfacs)
-                .HasForeignKey(d => new { d.EncfacNumero, d.ComCodigo, d.Anio })
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("VEN_DETFAC_FK21069863163491");
-        });
+             entity.HasOne(d => d.VenEncfac).WithMany(p => p.VenDetfacs)
+                 .HasForeignKey(d => new { d.EncfacNumero, d.ComCodigo, d.Anio })
+                 .OnDelete(DeleteBehavior.ClientSetNull)
+                 .HasConstraintName("VEN_DETFAC_FK21069863163491");
+         });
 
-        modelBuilder.Entity<VenEncfac>(entity =>
-        {
-            entity.HasKey(e => new { e.EncfacNumero, e.ComCodigo, e.Anio });
+         modelBuilder.Entity<VenEncfac>(entity =>
+         {
+             entity.HasKey(e => new { e.EncfacNumero, e.ComCodigo, e.Anio });
 
-            entity.ToTable("VEN_ENCFAC");
+             entity.ToTable("VEN_ENCFAC");
 
-            entity.Property(e => e.EncfacNumero)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("ENCFAC_NUMERO");
-            entity.Property(e => e.ComCodigo)
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("COM_CODIGO");
-            entity.Property(e => e.Anio)
-                .HasMaxLength(4)
-                .IsUnicode(false)
-                .HasColumnName("ANIO");
-            /*entity.Property(e => e.AsiNro)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("ASI_NRO");
-            entity.Property(e => e.AsiNroret)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("ASI_NRORET");
-            entity.Property(e => e.BodCodigo)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("BOD_CODIGO"); */
+             entity.Property(e => e.EncfacNumero)
+                 .HasMaxLength(50)
+                 .IsUnicode(false)
+                 .HasColumnName("ENCFAC_NUMERO");
+             entity.Property(e => e.ComCodigo)
+                 .HasMaxLength(2)
+                 .IsUnicode(false)
+                 .HasColumnName("COM_CODIGO");
+             entity.Property(e => e.Anio)
+                 .HasMaxLength(4)
+                 .IsUnicode(false)
+                 .HasColumnName("ANIO");
+             /*entity.Property(e => e.AsiNro)
+                 .HasMaxLength(20)
+                 .IsUnicode(false)
+                 .HasColumnName("ASI_NRO");
+             entity.Property(e => e.AsiNroret)
+                 .HasMaxLength(20)
+                 .IsUnicode(false)
+                 .HasColumnName("ASI_NRORET");
+             entity.Property(e => e.BodCodigo)
+                 .HasMaxLength(5)
+                 .IsUnicode(false)
+                 .HasColumnName("BOD_CODIGO"); */
             entity.Property(e => e.CliCodigo)
                 .HasMaxLength(14)
                 .IsUnicode(false)
