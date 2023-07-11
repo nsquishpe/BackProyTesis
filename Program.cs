@@ -31,6 +31,18 @@ builder.Services.AddScoped<Logic_Vehiculo>();
 builder.Services.AddScoped<Data_Detfac>();
 builder.Services.AddScoped<Logic_Detfac>();
 
+// Agregar la configuración para Empleado
+builder.Services.AddScoped<Data_Empleado>();
+builder.Services.AddScoped<Logic_Empleado>();
+
+// Agregar la configuración para Grupo
+builder.Services.AddScoped<Data_GrupoRep>();
+builder.Services.AddScoped<Logic_GrupoRep>();
+
+// Agregar la configuración para Articulo
+builder.Services.AddScoped<Data_Articulo>();
+builder.Services.AddScoped<Logic_Articulo>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

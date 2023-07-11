@@ -30,6 +30,9 @@ public partial class context : DbContext
     public virtual DbSet<VenMaecliente> VenMaeclientes { get; set; }
 
     public virtual DbSet<VenVhcspcf> VenVhcspcfs { get; set; }
+    public virtual DbSet<NomEmpleado> NomEmpleados { get; set; }
+    public virtual DbSet<VenDetfacemp> VenDetfacemps { get; set; }
+    public virtual DbSet<InvMaegrupo> InvMaegrupos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
@@ -53,7 +56,7 @@ public partial class context : DbContext
                 .HasMaxLength(25)
                 .IsUnicode(false)
                 .HasColumnName("ART_CODIGO");
-            entity.Property(e => e.ArtAltura)
+            /*entity.Property(e => e.ArtAltura)
                 .HasColumnType("FLOAT")
                 .HasColumnName("ART_ALTURA");
             entity.Property(e => e.ArtAncho)
@@ -101,13 +104,13 @@ public partial class context : DbContext
                 .HasColumnName("ART_DIASGARANTIA");
             entity.Property(e => e.ArtFactor)
                 .HasColumnType("FLOAT")
-                .HasColumnName("ART_FACTOR");
+                .HasColumnName("ART_FACTOR"); */
             entity.Property(e => e.ArtFechaing)
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("ART_FECHAING");
-            entity.Property(e => e.ArtFlag)
+            /*entity.Property(e => e.ArtFlag)
                 .IsRequired()
                 .HasPrecision(1)
                 .HasDefaultValueSql("1                     ")
@@ -136,12 +139,12 @@ public partial class context : DbContext
             entity.Property(e => e.ArtMultiunidad)
                 .HasMaxLength(1)
                 .IsUnicode(false)
-                .HasColumnName("ART_MULTIUNIDAD");
+                .HasColumnName("ART_MULTIUNIDAD"); */
             entity.Property(e => e.ArtNombre)
                 .HasMaxLength(80)
                 .IsUnicode(false)
                 .HasColumnName("ART_NOMBRE");
-            entity.Property(e => e.ArtNombrec)
+            /*entity.Property(e => e.ArtNombrec)
                 .HasMaxLength(15)
                 .IsUnicode(false)
                 .HasColumnName("ART_NOMBREC");
@@ -193,12 +196,12 @@ public partial class context : DbContext
             entity.Property(e => e.BodCodigo)
                 .HasMaxLength(10)
                 .IsUnicode(false)
-                .HasColumnName("BOD_CODIGO");
+                .HasColumnName("BOD_CODIGO");*/
             entity.Property(e => e.ComCodigo)
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasColumnName("COM_CODIGO");
-            entity.Property(e => e.ConCodigoact)
+            /*entity.Property(e => e.ConCodigoact)
                 .HasMaxLength(40)
                 .IsUnicode(false)
                 .HasColumnName("CON_CODIGOACT");
@@ -217,12 +220,12 @@ public partial class context : DbContext
             entity.Property(e => e.ConCodigoord2)
                 .HasMaxLength(40)
                 .IsUnicode(false)
-                .HasColumnName("CON_CODIGOORD2");
+                .HasColumnName("CON_CODIGOORD2"); */
             entity.Property(e => e.GrupCodigo)
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("GRUP_CODIGO");
-            entity.Property(e => e.GrupCodigop)
+            /*entity.Property(e => e.GrupCodigop)
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("GRUP_CODIGOP");
@@ -233,7 +236,11 @@ public partial class context : DbContext
             entity.Property(e => e.VenCodigo)
                 .HasMaxLength(5)
                 .IsUnicode(false)
-                .HasColumnName("VEN_CODIGO");
+                .HasColumnName("VEN_CODIGO");*/
+
+            entity.HasOne(d => d.InvMaegrupo).WithMany(p => p.InvMaearticulos)
+                .HasForeignKey(d => new { d.Anio, d.GrupCodigo })
+                .HasConstraintName("INV_MAEGRUPO_FK_CODIGO_GRUPO");
         });
 
         modelBuilder.Entity<InvTrnkardex>(entity =>
@@ -1281,6 +1288,214 @@ public partial class context : DbContext
             entity.HasOne(d => d.VenEncfac).WithMany(p => p.VenVhcspcfs)
                 .HasForeignKey(d => new { d.EncfacNumero, d.ComCodigo, d.Anio })
                 .HasConstraintName("FK_ENCFAC_NUMERO");
+        });
+
+        //Nuevas
+        modelBuilder.Entity<NomEmpleado>(entity =>
+        {
+            entity.HasKey(e => new { e.Anio, e.EmpCodigo }).HasName("NOM_EMPLEADO_PK41113621060203");
+
+            entity.ToTable("NOM_EMPLEADO");
+
+            entity.HasIndex(e => new { e.Anio, e.EmpAlias }, "NOM_EMPLEADO_UK81113621074062").IsUnique();
+
+            entity.Property(e => e.Anio)
+                .HasMaxLength(4)
+                .IsUnicode(false)
+                .HasColumnName("ANIO");
+            entity.Property(e => e.EmpCodigo)
+                .HasColumnType("NUMBER")
+                .HasColumnName("EMP_CODIGO");
+            /*entity.Property(e => e.ComCodigo)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("COM_CODIGO");
+            entity.Property(e => e.ConCodigo)
+                .HasMaxLength(35)
+                .IsUnicode(false)
+                .HasColumnName("CON_CODIGO"); */
+            entity.Property(e => e.EmpActivo)
+                .IsRequired()
+                .HasPrecision(1)
+                .HasDefaultValueSql("1                     ")
+                .HasColumnName("EMP_ACTIVO");
+            entity.Property(e => e.EmpAlias)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("EMP_ALIAS");
+            entity.Property(e => e.EmpApellido)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("EMP_APELLIDO");
+            /*entity.Property(e => e.EmpAsesor)
+                .HasPrecision(1)
+                .HasColumnName("EMP_ASESOR");
+            entity.Property(e => e.EmpBaseminaprod)
+                .HasColumnType("FLOAT")
+                .HasColumnName("EMP_BASEMINAPROD");
+            entity.Property(e => e.EmpBasiespat)
+                .HasColumnType("FLOAT")
+                .HasColumnName("EMP_BASIESPAT");
+            entity.Property(e => e.EmpCalciesstoting)
+                .HasPrecision(1)
+                .HasColumnName("EMP_CALCIESSTOTING"); */
+            entity.Property(e => e.EmpCargo)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasColumnName("EMP_CARGO");
+            entity.Property(e => e.EmpCedula)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("EMP_CEDULA");
+            /*entity.Property(e => e.EmpDespfactura)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("EMP_DESPFACTURA");*/
+            entity.Property(e => e.EmpDireccion1)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("EMP_DIRECCION1");
+            /*entity.Property(e => e.EmpDireccion2)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("EMP_DIRECCION2");
+            entity.Property(e => e.EmpFechanacimiento)
+                .HasColumnType("DATE")
+                .HasColumnName("EMP_FECHANACIMIENTO");
+            entity.Property(e => e.EmpFechentrada)
+                .HasColumnType("DATE")
+                .HasColumnName("EMP_FECHENTRADA");
+            entity.Property(e => e.EmpFechsalida)
+                .HasColumnType("DATE")
+                .HasColumnName("EMP_FECHSALIDA");
+            entity.Property(e => e.EmpFondoreserva)
+                .HasColumnType("FLOAT")
+                .HasColumnName("EMP_FONDORESERVA");
+            entity.Property(e => e.EmpIdtarjeta)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .HasColumnName("EMP_IDTARJETA");
+            entity.Property(e => e.EmpIess)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("EMP_IESS"); */
+            entity.Property(e => e.EmpNombre)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("EMP_NOMBRE");
+            /*entity.Property(e => e.EmpNorol)
+                .HasColumnType("NUMBER")
+                .HasColumnName("EMP_NOROL");
+            entity.Property(e => e.EmpObservacion)
+                .HasMaxLength(300)
+                .IsUnicode(false)
+                .HasColumnName("EMP_OBSERVACION");
+            entity.Property(e => e.EmpServgrua)
+                .HasPrecision(1)
+                .HasColumnName("EMP_SERVGRUA");
+            entity.Property(e => e.EmpServtctr)
+                .HasPrecision(1)
+                .HasColumnName("EMP_SERVTCTR");
+            entity.Property(e => e.EmpSldfijo)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("EMP_SLDFIJO");
+            entity.Property(e => e.EmpSueldobasico)
+                .HasColumnType("FLOAT")
+                .HasColumnName("EMP_SUELDOBASICO");
+            entity.Property(e => e.EmpSueldofijo)
+                .HasColumnType("FLOAT")
+                .HasColumnName("EMP_SUELDOFIJO"); */
+            entity.Property(e => e.EmpTelefono1)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("EMP_TELEFONO1");
+            entity.Property(e => e.EmpTelefono2)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("EMP_TELEFONO2");
+            /*entity.Property(e => e.MaedepCodigo)
+                .HasPrecision(2)
+                .HasColumnName("MAEDEP_CODIGO");
+            entity.Property(e => e.VenCodigo)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .HasColumnName("VEN_CODIGO");*/
+        });
+
+        modelBuilder.Entity<VenDetfacemp>(entity =>
+        {
+            entity.HasKey(e => new { e.Anio, e.EncfacNumero, e.DetfacempCodigo }).HasName("VEN_DETFACEMP_PK41113268078328");
+
+            entity.ToTable("VEN_DETFACEMP");
+
+            entity.Property(e => e.Anio)
+                .HasMaxLength(4)
+                .IsUnicode(false)
+                .HasColumnName("ANIO");
+            entity.Property(e => e.EncfacNumero)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("ENCFAC_NUMERO");
+            entity.Property(e => e.DetfacempCodigo)
+                .HasColumnType("NUMBER")
+                .HasColumnName("DETFACEMP_CODIGO");
+            entity.Property(e => e.ComCodigo)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("COM_CODIGO");
+            entity.Property(e => e.DetfacLinea)
+                .HasColumnType("NUMBER(38)")
+                .HasColumnName("DETFAC_LINEA");
+            entity.Property(e => e.DetfacempOrden)
+                .HasColumnType("NUMBER")
+                .HasColumnName("DETFACEMP_ORDEN");
+            entity.Property(e => e.DetfacempTipodet)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("DETFACEMP_TIPODET");
+            entity.Property(e => e.EmpCodigo)
+                .HasColumnType("NUMBER")
+                .HasColumnName("EMP_CODIGO");
+            entity.Property(e => e.ProCodigo)
+                .HasMaxLength(14)
+                .IsUnicode(false)
+                .HasColumnName("PRO_CODIGO");
+
+            entity.HasOne(d => d.NomEmpleado).WithMany(p => p.VenDetfacemps)
+                .HasForeignKey(d => new { d.Anio, d.EmpCodigo })
+                .HasConstraintName("VEN_DETFACEMP_FK31113276498593");
+        });
+        modelBuilder.Entity<InvMaegrupo>(entity =>
+        {
+            entity.HasKey(e => new { e.Anio, e.GrupCodigo });
+
+            entity.ToTable("INV_MAEGRUPO");
+
+            entity.HasIndex(e => new { e.Anio, e.GrupCodigo, e.GrupCodigop }, "INV_MAEGRUPO_UK21055260218703").IsUnique();
+
+            entity.Property(e => e.Anio)
+                .HasMaxLength(4)
+                .IsUnicode(false)
+                .HasColumnName("ANIO");
+            entity.Property(e => e.GrupCodigo)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("GRUP_CODIGO");
+            /*entity.Property(e => e.ConCodigo)
+                .HasMaxLength(35)
+                .IsUnicode(false)
+                .HasDefaultValueSql("NULL")
+                .HasColumnName("CON_CODIGO");*/
+            entity.Property(e => e.GrupCodigop)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasDefaultValueSql("NULL")
+                .HasColumnName("GRUP_CODIGOP");
+            entity.Property(e => e.GrupNombre)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("GRUP_NOMBRE");
         });
 
         OnModelCreatingPartial(modelBuilder);
