@@ -43,6 +43,10 @@ builder.Services.AddScoped<Logic_GrupoRep>();
 builder.Services.AddScoped<Data_Articulo>();
 builder.Services.AddScoped<Logic_Articulo>();
 
+// Agregar la configuración para Inventario
+builder.Services.AddScoped<Data_Inventario>();
+builder.Services.AddScoped<Logic_Inventario>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

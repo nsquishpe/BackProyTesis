@@ -269,44 +269,44 @@ public partial class context : DbContext
                 .HasMaxLength(4)
                 .IsUnicode(false)
                 .HasColumnName("ANIO");
-            entity.Property(e => e.ArtpreCodbarra)
+            /*entity.Property(e => e.ArtpreCodbarra)
                 .HasMaxLength(35)
                 .IsUnicode(false)
-                .HasColumnName("ARTPRE_CODBARRA");
+                .HasColumnName("ARTPRE_CODBARRA");*/
             entity.Property(e => e.Dia)
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasColumnName("DIA");
-            entity.Property(e => e.FecJuliana)
+            /*entity.Property(e => e.FecJuliana)
                 .HasColumnType("NUMBER")
-                .HasColumnName("FEC_JULIANA");
+                .HasColumnName("FEC_JULIANA");*/
             entity.Property(e => e.Mes)
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasColumnName("MES");
-            entity.Property(e => e.TrnartArtext)
+            /*entity.Property(e => e.TrnartArtext)
                 .HasMaxLength(1)
                 .IsUnicode(false)
-                .HasColumnName("TRNART_ARTEXT");
+                .HasColumnName("TRNART_ARTEXT");*/
             entity.Property(e => e.TrnartCantidad)
                 .HasColumnType("FLOAT")
                 .HasColumnName("TRNART_CANTIDAD");
-            entity.Property(e => e.TrnartCostoprom)
+            /*entity.Property(e => e.TrnartCostoprom)
                 .HasColumnType("FLOAT")
-                .HasColumnName("TRNART_COSTOPROM");
+                .HasColumnName("TRNART_COSTOPROM");*/
             entity.Property(e => e.TrnartCostot)
                 .HasColumnType("FLOAT")
                 .HasColumnName("TRNART_COSTOT");
-            entity.Property(e => e.TrnartFechacaduca)
+            /*entity.Property(e => e.TrnartFechacaduca)
                 .HasColumnType("DATE")
-                .HasColumnName("TRNART_FECHACADUCA");
+                .HasColumnName("TRNART_FECHACADUCA"); */
             entity.Property(e => e.TrnartFechaes)
                 .HasColumnType("DATE")
                 .HasColumnName("TRNART_FECHAES");
-            entity.Property(e => e.TrnartHora)
+            /*entity.Property(e => e.TrnartHora)
                 .HasMaxLength(5)
                 .IsUnicode(false)
-                .HasColumnName("TRNART_HORA");
+                .HasColumnName("TRNART_HORA");*/
             entity.Property(e => e.TrnartOrigen)
                 .HasMaxLength(25)
                 .IsUnicode(false)

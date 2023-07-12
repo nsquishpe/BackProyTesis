@@ -17,9 +17,9 @@ namespace BackProyTesis.Controllers
             _logic = logic;
         }
         [HttpGet("{anio}/{cod}")]
-        public async Task<ActionResult<List<InvMaearticulo>>?> BuscarPorCod(string anio, string cod)
+        public async Task<ActionResult<List<InvMaearticulo>>?> ListarPorGrupo(string anio, string cod)
         {
-            return await _logic.BuscarPorCod(anio, cod);
+            return await _logic.ListarPorGrupo(anio, cod);
         }
     }
 }

@@ -23,7 +23,7 @@ public partial class InvTrnkardex
 
     public string TrnartTipo { get; set; } = null!;
 
-    public DateTime? TrnartFechacaduca { get; set; }
+    //public DateTime? TrnartFechacaduca { get; set; }
 
     public string? TrnartReferencia { get; set; }
 
@@ -31,17 +31,17 @@ public partial class InvTrnkardex
 
     public decimal TrnartCostot { get; set; }
 
-    public string? TrnartHora { get; set; }
+    //public string? TrnartHora { get; set; }
 
     public string? TrnartOrigen { get; set; }
 
-    public string? TrnartArtext { get; set; }
+    //public string? TrnartArtext { get; set; }
 
-    public decimal? TrnartCostoprom { get; set; }
+    //public decimal? TrnartCostoprom { get; set; }
 
-    public decimal? FecJuliana { get; set; }
+    //public decimal? FecJuliana { get; set; }
 
-    public string? ArtpreCodbarra { get; set; }
+    //public string? ArtpreCodbarra { get; set; }
 
     public virtual InvMaearticulo A { get; set; } = null!;
 }

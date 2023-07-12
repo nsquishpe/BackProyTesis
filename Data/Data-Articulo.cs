@@ -11,7 +11,7 @@ namespace BackProyTesis.Data
         {
             _context = contexto;
         }
-        public async Task<ActionResult<List<InvMaearticulo>>?> BuscarPorCod(string anio, string cod)
+        public async Task<ActionResult<List<InvMaearticulo>>?> ListarPorGrupo(string anio, string cod)
         {
             var arts = await _context.InvMaearticulos
                 .Where(c => (c.Anio == anio) && (c.GrupCodigo == cod))

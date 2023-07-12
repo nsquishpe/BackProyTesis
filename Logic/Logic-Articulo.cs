@@ -12,9 +12,9 @@ namespace BackProyTesis.Logic
         {
             _data = data;
         }
-        public async Task<ActionResult<List<InvMaearticulo>>?> BuscarPorCod(string anio, string cod)
+        public async Task<ActionResult<List<InvMaearticulo>>?> ListarPorGrupo(string anio, string cod)
         {
-            return await _data.BuscarPorCod(anio, cod);
+            return await _data.ListarPorGrupo(anio, cod);
         }
     }
 }
