@@ -68,6 +68,27 @@ namespace BackProyTesis.Data
 
             return "0"; // Si no hay compras, se puede devolver un valor predeterminado.
         }
+        public async Task<string> ObtenerCostoVenta(string anio, string cod)
+        {
+            double iva = 1.12; string res = "";
+            List<double> precios = new List<double>();
+            var venta = await _context.InvTrnkardices
+                .Where(c => c.Anio == anio && c.ArtCodigo == cod && c.TrnartTipo == "SA")
+                .OrderByDescending(c => c.TrnartFechaes)
+                .FirstAsync();
+
+            VenDetfac? det = await _context.VenDetfacs
+                .FirstOrDefaultAsync(c => c.EncfacNumero == venta.TrnartReferencia && c.Anio == anio && c.DetfacCodigo == cod);
+
+
+            if (venta != null)
+            {
+                res = ((double)(det?.DetfacPrecio ?? 0)*iva).ToString();
+                return res;
+            }
+
+            return "0"; // Si no hay ventas, se puede devolver un valor predeterminado.
+        }
 
     }
 }

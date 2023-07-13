@@ -29,5 +29,9 @@ namespace BackProyTesis.Logic
         {
             return await _data.ObtenerCostoCompra(anio, cod);
         }
+        public async Task<string> ObtenerCostoVenta(string anio, string cod)
+        {
+            return await _data.ObtenerCostoVenta(anio, cod);
+        }
     }
 }

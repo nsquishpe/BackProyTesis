@@ -36,5 +36,10 @@ namespace BackProyTesis.Controllers
         {
             return await _logic.ObtenerCostoCompra(anio, cod);
         }
+        [HttpGet("ven/{anio}/{cod}")]
+        public async Task<string> ObtenerCostoVenta(string anio, string cod)
+        {
+            return await _logic.ObtenerCostoVenta(anio, cod);
+        }
     }
 }
