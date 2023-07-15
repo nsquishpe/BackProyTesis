@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace BackProyTesis.Models;
@@ -13,13 +14,13 @@ public partial class VenMaecliente
 
     //public string? VenCodigo { get; set; }
 
-    //public string CliNombrec { get; set; } = null!;
+    public string CliNombrec { get; set; } = null!;
 
     public string CliNombre { get; set; } = null!;
 
-    public string? CliTipoide { get; set; }
+    //public string? CliTipoide { get; set; }
 
-    //public string CliRucide { get; set; } = null!;
+    public string CliRucide { get; set; } = null!;
 
     public string? CliDireccion1 { get; set; }
 
@@ -102,4 +103,9 @@ public partial class VenMaecliente
     //public string? CliCodiformpago2 { get; set; }
 
     public virtual ICollection<VenEncfac> VenEncfacs { get; set; } = new List<VenEncfac>();
+
+    public static implicit operator VenMaecliente?(ActionResult<VenMaecliente>? v)
+    {
+        throw new NotImplementedException();
+    }
 }

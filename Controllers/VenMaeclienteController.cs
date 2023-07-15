@@ -31,5 +31,21 @@ namespace BackProyTesis.Controllers
         {
             return await _logic.BuscarCont(anio, codigo);
         }
+        //CRUD
+        [HttpPost]
+        public async Task InsertarCliente(VenMaecliente cli)
+        {
+            await _logic.InsertarCliente(cli);
+        }
+        [HttpPut]
+        public async Task<bool> ActualizarCliente(VenMaecliente cli)
+        {
+            return await _logic.ActualizarCliente(cli);
+        }
+        [HttpDelete]
+        public async Task<bool> EliminarCliente(VenMaecliente cli)
+        {
+            return await _logic.EliminarCliente(cli);
+        }
     }
 }

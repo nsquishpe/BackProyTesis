@@ -25,5 +25,9 @@ namespace BackProyTesis.Logic
         {
             return await _data.AutosPorMarca(anio);
         }
+        public async Task<List<VenVhcspcf>?> BuscarPorCli(string anio, string cli)
+        {
+            return await _data.BuscarPorCli(anio,cli);
+        }
     }
 }

@@ -1140,11 +1140,11 @@ public partial class context : DbContext
                 .HasMaxLength(300)
                 .IsUnicode(false)
                 .HasColumnName("CLI_NOMBRE");
-            /*entity.Property(e => e.CliNombrec)
+            entity.Property(e => e.CliNombrec)
                 .HasMaxLength(15)
                 .IsUnicode(false)
                 .HasColumnName("CLI_NOMBREC");
-            entity.Property(e => e.CliObservacion)
+            /*entity.Property(e => e.CliObservacion)
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("CLI_OBSERVACION");
@@ -1157,11 +1157,11 @@ public partial class context : DbContext
             entity.Property(e => e.CliProvincia)
                 .HasMaxLength(3)
                 .IsUnicode(false)
-                .HasColumnName("CLI_PROVINCIA");
+                .HasColumnName("CLI_PROVINCIA"); */
             entity.Property(e => e.CliRucide)
                 .HasMaxLength(15)
                 .IsUnicode(false)
-                .HasColumnName("CLI_RUCIDE"); */
+                .HasColumnName("CLI_RUCIDE"); 
             entity.Property(e => e.CliSaldo)
                 .HasColumnType("FLOAT")
                 .HasColumnName("CLI_SALDO");
@@ -1176,11 +1176,11 @@ public partial class context : DbContext
             entity.Property(e => e.CliTipo)
                 .HasMaxLength(3)
                 .IsUnicode(false)
-                .HasColumnName("CLI_TIPO"); */
+                .HasColumnName("CLI_TIPO"); 
             entity.Property(e => e.CliTipoide)
                 .HasMaxLength(1)
                 .IsUnicode(false)
-                .HasColumnName("CLI_TIPOIDE");
+                .HasColumnName("CLI_TIPOIDE");*/
             /*entity.Property(e => e.CliTrfiva)
                 .HasMaxLength(3)
                 .IsUnicode(false)

@@ -1,6 +1,8 @@
 ﻿using BackProyTesis.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace BackProyTesis.Data
 {
@@ -39,14 +41,17 @@ namespace BackProyTesis.Data
 
             return conteoMarcas!;
         }
+        public async Task<List<VenVhcspcf>?> BuscarPorCli(string anio, string cli)
+        {
+            var vehiculosRegistrados = await (
+                from fac in _context.VenEncfacs
+                join vehiculo in _context.VenVhcspcfs on fac.EncfacNumero equals vehiculo.EncfacNumero
+                where fac.CliCodigo == cli && fac.Anio == anio && vehiculo.Anio == anio
+                group vehiculo by vehiculo.VhcspcfPlaca into grupo
+                select grupo.First()
+            ).ToListAsync();
 
-
-
-
-
-
-
-
-
+            return vehiculosRegistrados;
+        }
     }
 }

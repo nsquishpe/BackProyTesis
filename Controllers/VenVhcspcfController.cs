@@ -31,5 +31,10 @@ namespace BackProyTesis.Controllers
         {
             return await _logic.AutosPorMarca(anio);
         }
+        [HttpGet("cli/{anio}/{cli}")]
+        public async Task<List<VenVhcspcf>?> BuscarPorCli(string anio, string cli)
+        {
+            return await _logic.BuscarPorCli(anio, cli);
+        }
     }
 }

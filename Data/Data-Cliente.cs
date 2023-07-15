@@ -37,5 +37,44 @@ namespace BackProyTesis.Data
 
             return clientes;
         }
+        //CRUD
+        public async Task InsertarCliente(VenMaecliente cli)
+        {
+            _context.VenMaeclientes.Add(cli);
+            await _context.SaveChangesAsync();
+        }
+        public async Task<bool> ActualizarCliente(VenMaecliente cli)
+        {
+            var clitemp = await _context.VenMaeclientes
+                .FirstOrDefaultAsync(c => c.Anio == cli.Anio && c.CliCodigo == cli.CliCodigo);
+            if (clitemp != null)
+            {
+                clitemp.Anio = cli.Anio;
+                clitemp.CliCodigo = cli.CliCodigo;
+                clitemp.CliNombre = cli.CliNombre;
+                clitemp.CliNombre = cli.CliNombre;
+                clitemp.CliDireccion1 = cli.CliDireccion1;
+                clitemp.CliTelefono1 = cli.CliTelefono1;
+                clitemp.CliCorreo = cli.CliCorreo;
+                clitemp.CliNombrec = clitemp.CliNombre;
+                clitemp.CliRucide= clitemp.CliCodigo;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+        public async Task<bool> EliminarCliente(VenMaecliente cli)
+        {
+            var clitemp = await _context.VenMaeclientes
+                .FirstOrDefaultAsync(c => c.Anio == cli.Anio && c.CliCodigo == cli.CliCodigo);
+
+            if (clitemp != null)
+            {
+                _context.VenMaeclientes.Remove(clitemp);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
     }
 }
