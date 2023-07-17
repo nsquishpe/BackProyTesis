@@ -33,6 +33,15 @@ public partial class context : DbContext
     public virtual DbSet<NomEmpleado> NomEmpleados { get; set; }
     public virtual DbSet<VenDetfacemp> VenDetfacemps { get; set; }
     public virtual DbSet<InvMaegrupo> InvMaegrupos { get; set; }
+    public virtual DbSet<CabOrdenTrabajo> CabOrdenTrabajos { get; set; }
+
+    public virtual DbSet<DetOrdInventario> DetOrdInventarios { get; set; }
+
+    public virtual DbSet<DetOrdServicio> DetOrdServicios { get; set; }
+
+    public virtual DbSet<InvVehiculo> InvVehiculos { get; set; }
+
+    public virtual DbSet<Servicio> Servicios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
@@ -1496,6 +1505,173 @@ public partial class context : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("GRUP_NOMBRE");
+        });
+
+        modelBuilder.Entity<CabOrdenTrabajo>(entity =>
+        {
+            entity.HasKey(e => new { e.OrdNumero, e.OrdAnio }).HasName("PK_CAB_ORDEN");
+
+            entity.ToTable("CAB_ORDEN_TRABAJO");
+
+            entity.Property(e => e.OrdNumero)
+                .HasColumnType("NUMBER")
+                .HasColumnName("ORD_NUMERO");
+            entity.Property(e => e.OrdAnio)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .HasColumnName("ORD_ANIO");
+            entity.Property(e => e.CliCodigo)
+                .HasMaxLength(14)
+                .IsUnicode(false)
+                .HasColumnName("CLI_CODIGO");
+            entity.Property(e => e.CliNombre)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasColumnName("CLI_NOMBRE");
+            entity.Property(e => e.MaecolorCodigo)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("MAECOLOR_CODIGO");
+            entity.Property(e => e.OrdFecha)
+                .HasColumnType("DATE")
+                .HasColumnName("ORD_FECHA");
+            entity.Property(e => e.OrdKm)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasColumnName("ORD_KM");
+            entity.Property(e => e.OrdObsv)
+                .HasMaxLength(300)
+                .IsUnicode(false)
+                .HasColumnName("ORD_OBSV");
+            entity.Property(e => e.OrdObsv1)
+                .HasMaxLength(300)
+                .IsUnicode(false)
+                .HasColumnName("ORD_OBSV1");
+            entity.Property(e => e.OrdPlaca)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasColumnName("ORD_PLACA");
+            entity.Property(e => e.VehmarmodCodigo)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .HasColumnName("VEHMARMOD_CODIGO");
+
+            entity.HasOne(d => d.VenMaecliente).WithMany(p => p.CabOrdenTrabajos)
+                .HasForeignKey(d => new { d.OrdAnio, d.CliCodigo })
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("CAB_ORDTRAB_FK_CLIENTE");
+        });
+
+        modelBuilder.Entity<DetOrdInventario>(entity =>
+        {
+            entity.HasKey(e => new { e.OrdNumero, e.DetInvLinea, e.OrdAnio });
+
+            entity.ToTable("DET_ORD_INVENTARIO");
+
+            entity.HasIndex(e => new { e.OrdNumero, e.OrdAnio }, "RELATIONSHIP_3_FK");
+
+            entity.HasIndex(e => e.InvCodigo, "RELATIONSHIP_4_FK");
+
+            entity.Property(e => e.OrdNumero)
+                .HasColumnType("NUMBER")
+                .HasColumnName("ORD_NUMERO");
+            entity.Property(e => e.DetInvLinea)
+                .HasColumnType("NUMBER")
+                .HasColumnName("DET_INV_LINEA");
+            entity.Property(e => e.OrdAnio)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .HasColumnName("ORD_ANIO");
+            entity.Property(e => e.InvCodigo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("INV_CODIGO");
+            entity.Property(e => e.InvDescrip)
+                .HasMaxLength(40)
+                .IsUnicode(false)
+                .HasColumnName("INV_DESCRIP");
+
+            entity.HasOne(d => d.InvCodigoNavigation).WithMany(p => p.DetOrdInventarios)
+                .HasForeignKey(d => d.InvCodigo)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_DET_ORD__RELATIONS_INV_VEHI");
+
+            entity.HasOne(d => d.Ord).WithMany(p => p.DetOrdInventarios)
+                .HasForeignKey(d => new { d.OrdNumero, d.OrdAnio })
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_DET_ORD__DET_CAB_I_CAB_ORDE");
+        });
+
+        modelBuilder.Entity<DetOrdServicio>(entity =>
+        {
+            entity.HasKey(e => new { e.DetSerLinea, e.OrdNumero, e.OrdAnio });
+
+            entity.ToTable("DET_ORD_SERVICIOS");
+
+            entity.HasIndex(e => e.SerCodigo, "RELATIONSHIP_1_FK");
+
+            entity.HasIndex(e => new { e.OrdNumero, e.OrdAnio }, "RELATIONSHIP_2_FK");
+
+            entity.Property(e => e.DetSerLinea)
+                .HasColumnType("NUMBER")
+                .HasColumnName("DET_SER_LINEA");
+            entity.Property(e => e.OrdNumero)
+                .HasColumnType("NUMBER")
+                .HasColumnName("ORD_NUMERO");
+            entity.Property(e => e.OrdAnio)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .HasColumnName("ORD_ANIO");
+            entity.Property(e => e.DetDescrip)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasColumnName("DET_DESCRIP");
+            entity.Property(e => e.SerCodigo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("SER_CODIGO");
+
+            entity.HasOne(d => d.SerCodigoNavigation).WithMany(p => p.DetOrdServicios)
+                .HasForeignKey(d => d.SerCodigo)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_DET_ORD__RELATIONS_SERVICIO");
+
+            entity.HasOne(d => d.Ord).WithMany(p => p.DetOrdServicios)
+                .HasForeignKey(d => new { d.OrdNumero, d.OrdAnio })
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_DET_ORD__DET_CAB_S_CAB_ORDE");
+        });
+
+        modelBuilder.Entity<InvVehiculo>(entity =>
+        {
+            entity.HasKey(e => e.InvCodigo);
+
+            entity.ToTable("INV_VEHICULO");
+
+            entity.Property(e => e.InvCodigo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("INV_CODIGO");
+            entity.Property(e => e.InvDescrip)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasColumnName("INV_DESCRIP");
+        });
+
+        modelBuilder.Entity<Servicio>(entity =>
+        {
+            entity.HasKey(e => e.SerCodigo);
+
+            entity.ToTable("SERVICIOS");
+
+            entity.Property(e => e.SerCodigo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("SER_CODIGO");
+            entity.Property(e => e.SerDescrip)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasColumnName("SER_DESCRIP");
         });
 
         OnModelCreatingPartial(modelBuilder);

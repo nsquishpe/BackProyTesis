@@ -185,7 +185,7 @@ public partial class VenEncfac
 
     //public string? EncfacComprobante { get; set; }
 
-   // public string? EncfacConfirma { get; set; }
+    // public string? EncfacConfirma { get; set; }
 
     //public string? MaeserifactSerie { get; set; }
 

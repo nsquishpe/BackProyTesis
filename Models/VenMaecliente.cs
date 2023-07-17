@@ -102,6 +102,8 @@ public partial class VenMaecliente
 
     //public string? CliCodiformpago2 { get; set; }
 
+    public virtual ICollection<CabOrdenTrabajo> CabOrdenTrabajos { get; set; } = new List<CabOrdenTrabajo>();
+
     public virtual ICollection<VenEncfac> VenEncfacs { get; set; } = new List<VenEncfac>();
 
     public static implicit operator VenMaecliente?(ActionResult<VenMaecliente>? v)
