@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace BackProyTesis.Models;
 
@@ -17,5 +18,5 @@ public partial class DetOrdServicio
 
     public virtual CabOrdenTrabajo Ord { get; set; } = null!;
 
-    public virtual Servicio SerCodigoNavigation { get; set; } = null!;
+    public virtual Servicio? SerCodigoNavigation { get; set; } = null!;
 }

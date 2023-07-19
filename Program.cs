@@ -47,6 +47,21 @@ builder.Services.AddScoped<Logic_Articulo>();
 builder.Services.AddScoped<Data_Inventario>();
 builder.Services.AddScoped<Logic_Inventario>();
 
+// Agregar la configuración para InvVehiculo
+builder.Services.AddScoped<Data_InvVeh>();
+builder.Services.AddScoped<Logic_InvVeh>();
+
+// Agregar la configuración para Servicios
+builder.Services.AddScoped<Data_Servicios>();
+builder.Services.AddScoped<Logic_Servicios>();
+
+// Agregar la configuración para Cab Ord Trab
+builder.Services.AddScoped<Data_CabOrdTrab>();
+builder.Services.AddScoped<Logic_CabOrdTrab>();
+
+// Agregar la configuración para Det Ser
+builder.Services.AddScoped<Data_DetOrdSer>();
+builder.Services.AddScoped<Logic_DetOrdSer>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -15,7 +15,7 @@ public partial class DetOrdInventario
 
     public string? InvDescrip { get; set; }
 
-    public virtual InvVehiculo InvCodigoNavigation { get; set; } = null!;
+    public virtual InvVehiculo? InvCodigoNavigation { get; set; } = null!;
 
     public virtual CabOrdenTrabajo Ord { get; set; } = null!;
 }
