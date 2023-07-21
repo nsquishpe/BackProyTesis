@@ -63,6 +63,10 @@ builder.Services.AddScoped<Logic_CabOrdTrab>();
 builder.Services.AddScoped<Data_DetOrdSer>();
 builder.Services.AddScoped<Logic_DetOrdSer>();
 
+// Agregar la configuración para Det Inv
+builder.Services.AddScoped<Data_DetOrdInv>();
+builder.Services.AddScoped<Logic_DetOrdInv>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 //builder.Services.AddEndpointsApiExplorer();

@@ -1,5 +1,6 @@
 ﻿using BackProyTesis.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace BackProyTesis.Data
 {
@@ -53,7 +54,34 @@ namespace BackProyTesis.Data
             }
         }
         //eliminar
+        public async Task<bool> EliminarDetServs(decimal num, string anio)
+        {
+            List < DetOrdServicio > det_serv = detalles(num, anio)!;
+            if (det_serv!= null)
+            {
+                for (int i = 0; i < det_serv.Count(); i++)
+                {
+                    _context.DetOrdServicios.Remove(det_serv[i]);
+                    await _context.SaveChangesAsync();
+                }
+                return true;
+            }
+            return false;
+        }
         //editar
+        public async Task<bool> ActualizarCliente(decimal num, string anio, List<Servicio> ser)
+        {
+            //Verificar existencia detalle
+            if (detalles(num, anio) != null) //existe
+            {
+                await EliminarDetServs(num, anio); //elimino lineas existentes
+                await InsertarDetallesServ(num, anio, ser); //ingreso nuevas
+                
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
 
     }
 }

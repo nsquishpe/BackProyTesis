@@ -27,5 +27,15 @@ namespace BackProyTesis.Controllers
         {
             await _logic.InsertarDetallesServ(num, anio, ser);
         }
+        [HttpPut]
+        public async Task<bool> ActualizarDetServs(decimal num, string anio, List<Servicio> ser)
+        {
+            return await _logic.ActualizarDetServs(num, anio, ser);
+        }
+        [HttpDelete]
+        public async Task<bool> EliminarDetServs(decimal num, string anio)
+        {
+            return await _logic.EliminarDetServs(num, anio);
+        }
     }
 }

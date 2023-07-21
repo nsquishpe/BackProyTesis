@@ -1,5 +1,7 @@
 ﻿using BackProyTesis.Data;
 using BackProyTesis.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Runtime.ConstrainedExecution;
 
 namespace BackProyTesis.Logic
 {
@@ -19,6 +21,16 @@ namespace BackProyTesis.Logic
         public async Task InsertarDetallesServ(decimal num, string anio, List<Servicio> ser)
         {
             await _data.InsertarDetallesServ(num, anio, ser);
+        }
+        //eliminar
+        public async Task<bool> EliminarDetServs(decimal num, string anio)
+        {
+            return await _data.EliminarDetServs(num, anio);
+        }
+        //editar
+        public async Task<bool> ActualizarCliente(decimal num, string anio, List<Servicio> ser)
+        {
+            return await _data.ActualizarCliente(num, anio, ser);
         }
     }
 }
