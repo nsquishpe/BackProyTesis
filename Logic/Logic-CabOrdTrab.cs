@@ -14,9 +14,9 @@ namespace BackProyTesis.Logic
         {
             _data = data;
         }
-        public async Task<decimal> AsignarNumOrd()
+        public async Task<string> AsignarNumOrd(string anio)
         {
-            return await _data.AsignarNumOrd();
+            return await _data.AsignarNumOrd(anio);
         }
         public async Task<ActionResult<List<CabOrdenTrabajo>>?> BuscarPorCliCont(string anio, string cli)
         {

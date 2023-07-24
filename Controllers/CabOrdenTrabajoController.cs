@@ -17,9 +17,9 @@ namespace BackProyTesis.Controllers
             _logic = logic;
         }
         [HttpGet]
-        public async Task<decimal> AsignarNumOrd()
+        public async Task<string> AsignarNumOrd(string anio)
         {
-            return await _logic.AsignarNumOrd();
+            return await _logic.AsignarNumOrd(anio);
         }
         [HttpGet("cli/{anio}/{cli}")]
         public async Task<ActionResult<List<CabOrdenTrabajo>>?> BuscarPorCliCont(string anio, string cli)

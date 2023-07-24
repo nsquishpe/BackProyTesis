@@ -43,10 +43,13 @@ namespace BackProyTesis.Data
             else
                 return null;
         }
-        public async Task<decimal> AsignarNumOrd()
+        public async Task<string> AsignarNumOrd(string anio)
         {
-            var ultimoNumero = await _context.CabOrdenTrabajos.MaxAsync(o => (decimal?)o.OrdNumero) ?? 0;
-            return ultimoNumero + 1;
+            var ultimoNumero = await _context.CabOrdenTrabajos
+                .Where(o => o.OrdAnio == anio)
+                .MaxAsync(o => (decimal?)o.OrdNumero) ?? 0;
+
+            return (ultimoNumero + 1).ToString();
         }
         //Auxiliares
         private CabOrdenTrabajo ? CabOrdTrab_PorId(decimal id, string anio)
