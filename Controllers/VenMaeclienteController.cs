@@ -33,9 +33,9 @@ namespace BackProyTesis.Controllers
         }
         //CRUD
         [HttpPost]
-        public async Task InsertarCliente(VenMaecliente cli)
+        public async Task<bool> InsertarCliente(VenMaecliente cli)
         {
-            await _logic.InsertarCliente(cli);
+            return await _logic.InsertarCliente(cli);
         }
         [HttpPut]
         public async Task<bool> ActualizarCliente(VenMaecliente cli)

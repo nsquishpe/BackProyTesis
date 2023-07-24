@@ -69,7 +69,7 @@ namespace BackProyTesis.Data
             return false;
         }
         //editar
-        public async Task<bool> ActualizarCliente(decimal num, string anio, List<Servicio> ser)
+        public async Task<bool> ActualizarDetServs(decimal num, string anio, List<Servicio> ser)
         {
             //Verificar existencia detalle
             if (detalles(num, anio) != null) //existe

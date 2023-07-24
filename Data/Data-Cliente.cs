@@ -37,16 +37,28 @@ namespace BackProyTesis.Data
 
             return clientes;
         }
-        //CRUD
-        public async Task InsertarCliente(VenMaecliente cli)
+        //auxiliar
+        private VenMaecliente? BuscaPorCodigo(string cod, string anio)
         {
-            _context.VenMaeclientes.Add(cli);
-            await _context.SaveChangesAsync();
+            var det_invs = _context.VenMaeclientes
+                .Where(d => d.CliCodigo == cod && d.Anio == anio)
+                .FirstOrDefault();
+            return det_invs;
+        }
+        //CRUD
+        public async Task<bool> InsertarCliente(VenMaecliente cli)
+        {
+            if(BuscaPorCodigo(cli.CliCodigo, cli.Anio) == null)
+            {
+                _context.VenMaeclientes.Add(cli);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
         public async Task<bool> ActualizarCliente(VenMaecliente cli)
         {
-            var clitemp = await _context.VenMaeclientes
-                .FirstOrDefaultAsync(c => c.Anio == cli.Anio && c.CliCodigo == cli.CliCodigo);
+            var clitemp = BuscaPorCodigo(cli.CliCodigo, cli.Anio);
             if (clitemp != null)
             {
                 clitemp.Anio = cli.Anio;
@@ -65,14 +77,23 @@ namespace BackProyTesis.Data
         }
         public async Task<bool> EliminarCliente(VenMaecliente cli)
         {
-            var clitemp = await _context.VenMaeclientes
-                .FirstOrDefaultAsync(c => c.Anio == cli.Anio && c.CliCodigo == cli.CliCodigo);
+            var clitemp = BuscaPorCodigo(cli.CliCodigo, cli.Anio);
+
+            //Verificar que no tenga registros en facturas y ordenes
+            Data_Encfac cab_fac = new Data_Encfac(_context);
+            Data_CabOrdTrab cab_ord = new Data_CabOrdTrab(_context);
+
+            var resultadoFac = await cab_fac.BuscarPorCli(cli.Anio, cli.CliCodigo);
+            var resultadoOrd = await cab_ord.BuscarPorCliCont(cli.Anio, cli.CliCodigo);
 
             if (clitemp != null)
             {
-                _context.VenMaeclientes.Remove(clitemp);
-                await _context.SaveChangesAsync();
-                return true;
+                if(resultadoFac == null && resultadoOrd == null)
+                {
+                    _context.VenMaeclientes.Remove(clitemp);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
             }
             return false;
         }

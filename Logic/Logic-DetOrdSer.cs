@@ -28,9 +28,9 @@ namespace BackProyTesis.Logic
             return await _data.EliminarDetServs(num, anio);
         }
         //editar
-        public async Task<bool> ActualizarCliente(decimal num, string anio, List<Servicio> ser)
+        public async Task<bool> ActualizarDetServs(decimal num, string anio, List<Servicio> ser)
         {
-            return await _data.ActualizarCliente(num, anio, ser);
+            return await _data.ActualizarDetServs(num, anio, ser);
         }
     }
 }

@@ -27,9 +27,9 @@ namespace BackProyTesis.Logic
             return await _data.BuscarCont(anio, codigo); 
         }
         //CRUD
-        public async Task InsertarCliente(VenMaecliente cli)
+        public async Task<bool> InsertarCliente(VenMaecliente cli)
         {
-            await _data.InsertarCliente(cli);
+            return await _data.InsertarCliente(cli);
         }
         public async Task<bool> ActualizarCliente(VenMaecliente cli)
         {
