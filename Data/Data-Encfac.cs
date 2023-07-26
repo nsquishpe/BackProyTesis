@@ -26,6 +26,17 @@ namespace BackProyTesis.Data
 
             return facs;
         }
+        public async Task<ActionResult<List<VenEncfac>>?> BuscarPorCliCont(string anio, string cli)
+        {
+            var facs = await _context.VenEncfacs
+                .Where(c => c.Anio == anio && c.CliCodigo.Contains(cli))
+                .ToListAsync();
+
+            if (facs.Count == 0)
+                return null;
+
+            return facs;
+        }
         public async Task<ActionResult<VenEncfac>?> BuscarPorNum(string anio, string num)
         {
             var fac = await _context.VenEncfacs.FirstOrDefaultAsync(c => c.Anio == anio && c.EncfacNumero == num);
@@ -62,6 +73,24 @@ namespace BackProyTesis.Data
 
             return facs;
         }
+
+        public async Task<List<VenEncfac>?> BuscarPorPlacaCont(string anio, string placa)
+        {
+            var facs = await _context.VenEncfacs
+                .Join(_context.VenVhcspcfs,
+                      encfac => new NewRecord(encfac.EncfacNumero, encfac.Anio),
+                      vhcspcf => new NewRecord(vhcspcf.EncfacNumero, vhcspcf.Anio),
+                      (encfac, vhcspcf) => new { encfac, vhcspcf })
+                .Where(x => x.encfac.Anio == anio && x.vhcspcf.VhcspcfPlaca.Contains(placa))
+                .Select(x => x.encfac)
+                .ToListAsync();
+
+            if (facs.Count == 0)
+                return null;
+
+            return facs;
+        }
+
 
     }
 

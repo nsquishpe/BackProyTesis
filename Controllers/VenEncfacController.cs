@@ -26,6 +26,12 @@ namespace BackProyTesis.Controllers
         {
             return await _logic.BuscarPorCli(anio, cli);
         }
+        [HttpGet("contc/{anio}/{cli}")]
+        public async Task<ActionResult<List<VenEncfac>>?> BuscarPorCliCont(string anio, string cli)
+        {
+            return await _logic.BuscarPorCliCont(anio, cli);
+        }
+
         [HttpGet("num/{anio}/{num}")]
         public async Task<ActionResult<VenEncfac>?> BuscarPorNum(string anio, string num)
         {
@@ -40,6 +46,11 @@ namespace BackProyTesis.Controllers
         public async Task<List<VenEncfac>?> BuscarPorPlaca(string anio, string placa)
         {
             return await _logic.BuscarPorPlaca(anio, placa);
+        }
+        [HttpGet("contp/{anio}/{placa}")]
+        public async Task<List<VenEncfac>?> BuscarPorPlacaCont(string anio, string placa)
+        {
+            return await _logic.BuscarPorPlacaCont(anio, placa);
         }
     }
 }

@@ -67,7 +67,23 @@ builder.Services.AddScoped<Logic_DetOrdSer>();
 builder.Services.AddScoped<Data_DetOrdInv>();
 builder.Services.AddScoped<Logic_DetOrdInv>();
 
+// Agregar la configuración para Usuario
+builder.Services.AddScoped<Data_Usuario>();
+builder.Services.AddScoped<Logic_Usuario>();
+
 builder.Services.AddControllers();
+
+// Configuración de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowOrigin", builder =>
+    {
+        builder.AllowAnyOrigin()  // Permitir cualquier origen
+               .AllowAnyMethod()  // Permitir cualquier método (GET, POST, etc.)
+               .AllowAnyHeader(); // Permitir cualquier encabezado HTTP
+    });
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 //builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
@@ -82,6 +98,9 @@ var app = builder.Build();
 //}
 
 app.UseHttpsRedirection();
+
+// Usar CORS (debe estar antes de UseAuthorization y MapControllers)
+app.UseCors("AllowOrigin");
 
 app.UseAuthorization();
 

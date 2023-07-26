@@ -22,6 +22,10 @@ namespace BackProyTesis.Logic
         {
             return await _data.BuscarPorCli(anio, cli);
         }
+        public async Task<ActionResult<List<VenEncfac>>?> BuscarPorCliCont(string anio, string cli)
+        {
+            return await _data.BuscarPorCliCont(anio, cli);
+        }
         public async Task<ActionResult<VenEncfac>?> BuscarPorNum(string anio, string num)
         {
             return await _data.BuscarPorNum(anio, num);
@@ -33,6 +37,10 @@ namespace BackProyTesis.Logic
         public async Task<List<VenEncfac>?> BuscarPorPlaca(string anio, string placa)
         {
             return await _data.BuscarPorPlaca(anio, placa);
+        }
+        public async Task<List<VenEncfac>?> BuscarPorPlacaCont(string anio, string placa)
+        {
+            return await _data.BuscarPorPlacaCont(anio, placa);
         }
     }
 }
