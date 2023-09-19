@@ -17,6 +17,10 @@ namespace BackProyTesis.Logic
         {
             return await _data.BuscarPorPlacFac(anio, plac, nfac);
         }
+        public async Task<ActionResult<VenVhcspcf>?> BuscarPorFac(string anio, string nfac)
+        {
+            return await _data.BuscarPorFac(anio, nfac);
+        }
         public async Task<ActionResult<List<string>>> AutosPorAnio(string anio)
         {
             return await _data.AutosPorAnio(anio);

@@ -22,6 +22,15 @@ namespace BackProyTesis.Data
             else
                 return null;
         }
+        public async Task<ActionResult<VenVhcspcf>?> BuscarPorFac(string anio, string nfac)
+        {
+            var fac = await _context.VenVhcspcfs.FirstOrDefaultAsync(c => c.Anio == anio && c.EncfacNumero == nfac);
+
+            if (fac != null)
+                return fac;
+            else
+                return null;
+        }
         public async Task<List<string>> AutosPorAnio(string anio)
         {
             var placas = await _context.VenVhcspcfs

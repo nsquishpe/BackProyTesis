@@ -16,6 +16,11 @@ namespace BackProyTesis.Controllers
         {
             _logic = logic;
         }
+        [HttpGet("fac/{anio}/{nfac}")]
+        public async Task<ActionResult<VenVhcspcf>?> BuscarPorFac(string anio, string nfac)
+        {
+            return await _logic.BuscarPorFac(anio, nfac);
+        }
         [HttpGet("{anio}/{plac}/{nfac}")]
         public async Task<ActionResult<VenVhcspcf>?> BuscarPorPlacFac(string anio, string plac, string nfac)
         {
