@@ -540,12 +540,12 @@ public partial class context : DbContext
                 .HasColumnName("DETFAC_DESCUENTO");
             /*entity.Property(e => e.DetfacDespacho)
                 .HasColumnType("FLOAT")
-                .HasColumnName("DETFAC_DESPACHO");
+                .HasColumnName("DETFAC_DESPACHO");*/
             entity.Property(e => e.DetfacEmpleado)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("DETFAC_EMPLEADO");
-            entity.Property(e => e.DetfacFlag)
+            /*entity.Property(e => e.DetfacFlag)
                 .IsRequired()
                 .HasPrecision(1)
                 .HasDefaultValueSql("0                     ")

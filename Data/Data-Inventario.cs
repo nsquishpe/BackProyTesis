@@ -75,19 +75,20 @@ namespace BackProyTesis.Data
             var venta = await _context.InvTrnkardices
                 .Where(c => c.Anio == anio && c.ArtCodigo == cod && c.TrnartTipo == "SA")
                 .OrderByDescending(c => c.TrnartFechaes)
-                .FirstAsync();
-
-            VenDetfac? det = await _context.VenDetfacs
-                .FirstOrDefaultAsync(c => c.EncfacNumero == venta.TrnartReferencia && c.Anio == anio && c.DetfacCodigo == cod);
+                .FirstOrDefaultAsync();
 
 
             if (venta != null)
             {
+                VenDetfac? det = await _context.VenDetfacs
+               .FirstOrDefaultAsync(c => c.EncfacNumero == venta.TrnartReferencia && c.Anio == anio && c.DetfacCodigo == cod);
                 res = ((double)(det?.DetfacPrecio ?? 0)*iva).ToString();
                 return res;
             }
-
-            return "0"; // Si no hay ventas, se puede devolver un valor predeterminado.
+            else{
+                res = await ObtenerCostoCompra(anio, cod);
+                return res;
+            }
         }
 
     }

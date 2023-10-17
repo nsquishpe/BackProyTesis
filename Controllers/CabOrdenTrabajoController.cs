@@ -2,6 +2,7 @@
 using BackProyTesis.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 
 namespace BackProyTesis.Controllers
@@ -17,9 +18,9 @@ namespace BackProyTesis.Controllers
             _logic = logic;
         }
         [HttpGet]
-        public async Task<string> AsignarNumOrd(string anio)
+        public async Task<List<CabOrdenTrabajo>> Listar(string anio)
         {
-            return await _logic.AsignarNumOrd(anio);
+            return await _logic.Listar(anio);
         }
         [HttpGet("cli/{anio}/{cli}")]
         public async Task<ActionResult<List<CabOrdenTrabajo>>?> BuscarPorCliCont(string anio, string cli)

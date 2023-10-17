@@ -81,7 +81,7 @@ public partial class VenDetfac
 
     //public decimal? MaeprmCodigo { get; set; }
 
-    //public string? DetfacEmpleado { get; set; }
+    public string? DetfacEmpleado { get; set; }
 
     //public decimal? DetfacValpgemp { get; set; }
 

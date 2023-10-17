@@ -11,6 +11,10 @@ namespace BackProyTesis.Data
         {
             _context = contexto;
         }
+        public async Task<List<CabOrdenTrabajo>> Listar(string anio)
+        {
+            return await _context.CabOrdenTrabajos.Where(c => c.OrdAnio == anio).ToListAsync();
+        }
         public async Task<ActionResult<List<CabOrdenTrabajo>>?> BuscarPorCliCont(string anio, string cli)
         {
             var ords = await _context.CabOrdenTrabajos

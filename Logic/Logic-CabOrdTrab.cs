@@ -14,6 +14,10 @@ namespace BackProyTesis.Logic
         {
             _data = data;
         }
+        public async Task<List<CabOrdenTrabajo>> Listar(string anio)
+        {
+            return await _data.Listar(anio);
+        }
         public async Task<string> AsignarNumOrd(string anio)
         {
             return await _data.AsignarNumOrd(anio);
