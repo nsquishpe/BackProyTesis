@@ -62,13 +62,11 @@ namespace BackProyTesis.Data
             if (clitemp != null)
             {
                 clitemp.Anio = cli.Anio;
-                clitemp.CliCodigo = cli.CliCodigo;
-                clitemp.CliNombre = cli.CliNombre;
                 clitemp.CliNombre = cli.CliNombre;
                 clitemp.CliDireccion1 = cli.CliDireccion1;
                 clitemp.CliTelefono1 = cli.CliTelefono1;
                 clitemp.CliCorreo = cli.CliCorreo;
-                clitemp.CliNombrec = clitemp.CliNombre;
+                clitemp.CliNombrec = clitemp.CliNombre.Length > 15 ? clitemp.CliNombre.Substring(0, 15) : clitemp.CliNombre;
                 clitemp.CliRucide= clitemp.CliCodigo;
                 await _context.SaveChangesAsync();
                 return true;

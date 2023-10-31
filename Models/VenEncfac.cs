@@ -204,6 +204,9 @@ public partial class VenEncfac
     public string? Mes { get; set; }
 
     public string? Dia { get; set; }
+    public string? EncfacGarantia { get; set; }
+
+    public string? EncfacObsgarantia { get; set; }
 
     public virtual SegMaecompanium ComCodigoNavigation { get; set; } = null!;
 
@@ -214,4 +217,5 @@ public partial class VenEncfac
     public virtual VenMaecliente? VenMaecliente { get; set; }
 
     public virtual ICollection<VenVhcspcf> VenVhcspcfs { get; set; } = new List<VenVhcspcf>();
+
 }

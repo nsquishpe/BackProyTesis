@@ -42,6 +42,9 @@ public partial class context : DbContext
     public virtual DbSet<InvVehiculo> InvVehiculos { get; set; }
 
     public virtual DbSet<Servicio> Servicios { get; set; }
+    public virtual DbSet<VenMaecolor> VenMaecolors { get; set; }
+
+    public virtual DbSet<VenVehmarmod> VenVehmarmods { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
@@ -1026,12 +1029,20 @@ public partial class context : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("USU_IDENTIFICACION");
-            /*entity.Property(e => e.VenCodigo)
-                .HasMaxLength(5)
+             entity.Property(e => e.EncfacObsgarantia)
+                .HasMaxLength(500)
                 .IsUnicode(false)
-                .HasColumnName("VEN_CODIGO");*/
+                .HasColumnName("ENCFAC_OBSGARANTIA");
+             entity.Property(e => e.EncfacGarantia)
+                            .HasMaxLength(1)
+                            .IsUnicode(false)
+                            .HasColumnName("ENCFAC_GARANTIA");
+             /*entity.Property(e => e.VenCodigo)
+                 .HasMaxLength(5)
+                 .IsUnicode(false)
+                 .HasColumnName("VEN_CODIGO");*/
 
-            entity.HasOne(d => d.ComCodigoNavigation).WithMany(p => p.VenEncfacs)
+             entity.HasOne(d => d.ComCodigoNavigation).WithMany(p => p.VenEncfacs)
                 .HasForeignKey(d => d.ComCodigo)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_CODIGO_COMPANIA");
@@ -1673,7 +1684,46 @@ public partial class context : DbContext
                 .IsUnicode(false)
                 .HasColumnName("SER_DESCRIP");
         });
+        modelBuilder.Entity<VenMaecolor>(entity =>
+        {
+            entity.HasKey(e => e.MaecolorCodigo).HasName("VEN_MAECOLOR_PK");
 
+            entity.ToTable("VEN_MAECOLOR");
+
+            entity.Property(e => e.MaecolorCodigo)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("MAECOLOR_CODIGO");
+            entity.Property(e => e.MaecolorDescripcion)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("MAECOLOR_DESCRIPCION");
+        });
+
+        modelBuilder.Entity<VenVehmarmod>(entity =>
+        {
+            entity.HasKey(e => e.VehmarmodCodigo).HasName("VEN_VEHMARMOD_PK11120956175406");
+
+            entity.ToTable("VEN_VEHMARMOD");
+
+            entity.Property(e => e.VehmarmodCodigo)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .HasColumnName("VEHMARMOD_CODIGO");
+            entity.Property(e => e.VehmarmodActivo)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasDefaultValueSql("'1'")
+                .HasColumnName("VEHMARMOD_ACTIVO");
+            entity.Property(e => e.VehmarmodCodigop)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .HasColumnName("VEHMARMOD_CODIGOP");
+            entity.Property(e => e.VehmarmodNombre)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("VEHMARMOD_NOMBRE");
+        });
         OnModelCreatingPartial(modelBuilder);
     }
 

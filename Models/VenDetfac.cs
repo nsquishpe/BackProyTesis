@@ -98,4 +98,5 @@ public partial class VenDetfac
     //public decimal? DetfacPorcdscto2 { get; set; }
 
     public virtual VenEncfac VenEncfac { get; set; } = null!;
+
 }

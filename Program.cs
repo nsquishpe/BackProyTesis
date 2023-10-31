@@ -71,6 +71,14 @@ builder.Services.AddScoped<Logic_DetOrdInv>();
 builder.Services.AddScoped<Data_Usuario>();
 builder.Services.AddScoped<Logic_Usuario>();
 
+// Agregar la configuración para Color
+builder.Services.AddScoped<Data_Colores>();
+builder.Services.AddScoped<Logic_Color>();
+
+// Agregar la configuración para Marca
+builder.Services.AddScoped<Data_Marcas>();
+builder.Services.AddScoped<Logic_Marca>();
+
 builder.Services.AddControllers();
 
 // Configuración de CORS

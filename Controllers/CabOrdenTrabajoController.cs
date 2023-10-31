@@ -17,6 +17,11 @@ namespace BackProyTesis.Controllers
         {
             _logic = logic;
         }
+        [HttpGet("num/{anio}")]
+        public async Task<string> AsignarNumOrd(string anio)
+        {
+            return await _logic.AsignarNumOrd(anio);
+        }
         [HttpGet]
         public async Task<List<CabOrdenTrabajo>> Listar(string anio)
         {
