@@ -3,6 +3,7 @@ using BackProyTesis.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Numerics;
 
 namespace BackProyTesis.Logic
 {
@@ -41,6 +42,10 @@ namespace BackProyTesis.Logic
         public async Task<List<VenEncfac>?> BuscarPorPlacaCont(string anio, string placa)
         {
             return await _data.BuscarPorPlacaCont(anio, placa);
+        }
+        public async Task<bool> ActualizarPorGarantia(VenEncfac fac)
+        {
+            return await _data.ActualizarPorGarantia(fac);
         }
     }
 }

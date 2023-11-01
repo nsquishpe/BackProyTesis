@@ -52,5 +52,10 @@ namespace BackProyTesis.Controllers
         {
             return await _logic.BuscarPorPlacaCont(anio, placa);
         }
+        [HttpPut]
+        public async Task<bool> ActualizarPorGarantia(VenEncfac fac)
+        {
+            return await _logic.ActualizarPorGarantia(fac);
+        }
     }
 }

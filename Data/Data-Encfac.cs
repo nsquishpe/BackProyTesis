@@ -90,8 +90,27 @@ namespace BackProyTesis.Data
 
             return facs;
         }
-
-
+        //MANEJO GARANTÍA
+        public async Task<bool> ActualizarPorGarantia(VenEncfac fac)
+        {
+            var fac_temp = BuscaPorCodigo(fac.EncfacNumero, fac.Anio);
+            if (fac_temp != null)
+            {
+                fac_temp.EncfacGarantia = fac.EncfacGarantia;
+                fac_temp.EncfacObsgarantia = fac.EncfacObsgarantia;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+        //auxiliar
+        private VenEncfac? BuscaPorCodigo(string cod, string anio)
+        {
+            var fac = _context.VenEncfacs
+                .Where(d => d.EncfacNumero == cod && d.Anio == anio)
+                .FirstOrDefault();
+            return fac;
+        }
     }
 
     internal record NewRecord(string? EncfacNumero, string Anio);

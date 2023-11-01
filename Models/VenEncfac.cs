@@ -208,7 +208,7 @@ public partial class VenEncfac
 
     public string? EncfacObsgarantia { get; set; }
 
-    public virtual SegMaecompanium ComCodigoNavigation { get; set; } = null!;
+    public virtual SegMaecompanium? ComCodigoNavigation { get; set; } = null!;
 
     public virtual SegMaeusuario? UsuIdentificacionNavigation { get; set; }
 
