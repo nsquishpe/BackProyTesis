@@ -31,5 +31,5 @@ public partial class CabOrdenTrabajo
 
     public virtual ICollection<DetOrdServicio> DetOrdServicios { get; set; } = new List<DetOrdServicio>();
 
-    public virtual VenMaecliente VenMaecliente { get; set; } = null!;
+    public virtual VenMaecliente? VenMaecliente { get; set; } = null!;
 }
