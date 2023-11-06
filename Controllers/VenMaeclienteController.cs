@@ -47,5 +47,26 @@ namespace BackProyTesis.Controllers
         {
             return await _logic.EliminarCliente(cli);
         }
+        //REPORTES
+        [HttpGet("ReporteClientesFrecPorAnio")]
+        public IActionResult ReporteClientesFrecPorAnio(string anio)
+        {
+            try
+            {
+                var resultados = _logic.ReporteClientesFrecPorAnio(anio);
+
+                if (resultados == null || !resultados.Any())
+                {
+                    return NotFound("No se encontraron resultados para los parámetros proporcionados.");
+                }
+
+                return Ok(resultados);
+            }
+            catch (Exception ex)
+            {
+                // Loguear el error
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@
 using BackProyTesis.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Net.Mail;
 
 namespace BackProyTesis.Logic
@@ -38,6 +39,11 @@ namespace BackProyTesis.Logic
         public async Task<bool> EliminarCliente(VenMaecliente cli)
         {
             return await _data.EliminarCliente(cli);
+        }
+        //REPORTES
+        public IEnumerable<ReporteClientesFrecPorAnio> ReporteClientesFrecPorAnio(string anio)
+        {
+            return  _data.ReporteClientesFrecPorAnio(anio);
         }
     }
 }

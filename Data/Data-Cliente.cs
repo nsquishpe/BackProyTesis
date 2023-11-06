@@ -1,6 +1,8 @@
 ﻿using BackProyTesis.Models;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Net.Mail;
 
 
@@ -95,5 +97,34 @@ namespace BackProyTesis.Data
             }
             return false;
         }
+        public IEnumerable<ReporteClientesFrecPorAnio> ReporteClientesFrecPorAnio(string anio)
+        {
+            using (IDbConnection dbConnection = _context.Database.GetDbConnection())
+            {
+                dbConnection.Open();
+
+                string sqlQuery = @"
+            SELECT *
+            FROM (
+                SELECT VE.ANIO, VE.CLI_CODIGO, VM.CLI_NOMBRE, 
+                       COUNT(VE.ENCFAC_NUMERO) AS NUMERO_DE_FACTURAS, 
+                       SUM(VE.ENCFAC_TOTAL) AS TOTAL_FACTURAS
+                FROM VEN_ENCFAC VE
+                JOIN VEN_MAECLIENTE VM ON VE.ANIO = VM.ANIO AND VE.CLI_CODIGO = VM.CLI_CODIGO
+                WHERE VE.ANIO = :Anio AND VE.CLI_CODIGO <> '9999999999999'
+                GROUP BY VE.ANIO, VE.CLI_CODIGO, VM.CLI_NOMBRE
+                HAVING COUNT(VE.ENCFAC_NUMERO) >= 6
+                ORDER BY TOTAL_FACTURAS DESC
+            )
+            WHERE ROWNUM <= 10
+            ORDER BY NUMERO_DE_FACTURAS DESC";
+
+                var parametros = new { Anio = anio };
+
+                var resultados = dbConnection.Query<ReporteClientesFrecPorAnio>(sqlQuery, parametros);
+                return resultados;
+            }
+        }
+
     }
 }

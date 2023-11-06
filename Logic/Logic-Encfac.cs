@@ -1,8 +1,10 @@
 ﻿using BackProyTesis.Data;
 using BackProyTesis.Models;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data;
 using System.Numerics;
 
 namespace BackProyTesis.Logic
@@ -46,6 +48,15 @@ namespace BackProyTesis.Logic
         public async Task<bool> ActualizarPorGarantia(VenEncfac fac)
         {
             return await _data.ActualizarPorGarantia(fac);
+        }
+        //REPORTE
+        public IEnumerable<ReporteVentas> ReporteGeneral(string fechaInicio, string fechaFin)
+        {
+            return _data.ReporteGeneral(fechaInicio, fechaFin);
+        }
+        public IEnumerable<ReporteVentas> ReportePorCliente(string fechaInicio, string fechaFin, string clienteCodigo)
+        {
+            return _data.ReportePorCliente(fechaInicio, fechaFin, clienteCodigo);
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using BackProyTesis.Models;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
+using System.Data.Common;
 
 namespace BackProyTesis.Data
 {
@@ -110,6 +113,85 @@ namespace BackProyTesis.Data
                 .Where(d => d.EncfacNumero == cod && d.Anio == anio)
                 .FirstOrDefault();
             return fac;
+        }
+        //REPORTES
+        public IEnumerable<ReporteVentas> ReporteGeneral(string fechaInicio, string fechaFin)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = _context.Database.GetDbConnection())
+                {
+                    dbConnection.Open();
+
+                    string sqlQuery = @"
+                    SELECT CLI_CODIGO, 
+                           CLI_NOMBRE, 
+                           TO_DATE(TO_CHAR(ENCFAC_FECHAEMISION, 'dd/mm/yyyy'), 'dd/mm/yyyy') AS ENCFAC_FECHAEMISION, 
+                           ENCFAC_ESTADO, 
+                           ENCFAC_REFERENCIA, 
+                           NVL(encfac_basecero, 0) + NVL(encfac_baseiva, 0) AS SUBTOTAL, 
+                           encfac_valoriva AS IVA, 
+                           encfac_total AS TOTAL 
+                    FROM ven_encfac 
+                    WHERE TO_DATE(TO_CHAR(ENCFAC_FECHAEMISION, 'dd/mm/yyyy'), 'dd/mm/yyyy') BETWEEN 
+                        TO_DATE(:FechaInicio, 'dd/mm/yyyy') AND TO_DATE(:FechaFin, 'dd/mm/yyyy')";
+
+                    var parametros = new { FechaInicio = fechaInicio, FechaFin = fechaFin };
+
+                    var resultados = dbConnection.Query<ReporteVentas>(sqlQuery, parametros);
+                    return resultados;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de la excepción: registrar el mensaje de error para diagnóstico
+                Console.WriteLine($"Error: {ex.Message}");
+
+                // Puedes lanzar la excepción nuevamente para interrumpir el flujo si es necesario
+                throw;
+            }
+        }
+        public IEnumerable<ReporteVentas> ReportePorCliente(string fechaInicio, string fechaFin, string clienteCodigo)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = _context.Database.GetDbConnection())
+                {
+                    dbConnection.Open();
+
+                    string sqlQuery = @"
+                    SELECT CLI_CODIGO, 
+                           CLI_NOMBRE, 
+                           TO_DATE(TO_CHAR(ENCFAC_FECHAEMISION, 'dd/mm/yyyy'), 'dd/mm/yyyy') AS ENCFAC_FECHAEMISION, 
+                           ENCFAC_ESTADO, 
+                           ENCFAC_REFERENCIA, 
+                           NVL(encfac_basecero, 0) + NVL(encfac_baseiva, 0) AS SUBTOTAL, 
+                           encfac_valoriva AS IVA, 
+                           encfac_total AS TOTAL 
+                    FROM ven_encfac 
+                    WHERE cli_codigo = :ClienteCodigo 
+                    AND TO_DATE(TO_CHAR(ENCFAC_FECHAEMISION, 'dd/mm/yyyy'), 'dd/mm/yyyy') BETWEEN 
+                        TO_DATE(:FechaInicio, 'dd/mm/yyyy') AND TO_DATE(:FechaFin, 'dd/mm/yyyy')";
+
+                    var parametros = new
+                    {
+                        FechaInicio = fechaInicio,
+                        FechaFin = fechaFin,
+                        ClienteCodigo = clienteCodigo
+                    };
+
+                    var resultados = dbConnection.Query<ReporteVentas>(sqlQuery, parametros);
+                    return resultados;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de la excepción: registrar el mensaje de error para diagnóstico
+                Console.WriteLine($"Error: {ex.Message}");
+
+                // Puedes lanzar la excepción nuevamente para interrumpir el flujo si es necesario
+                throw;
+            }
         }
     }
 

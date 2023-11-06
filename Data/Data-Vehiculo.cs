@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Data;
+using Dapper;
 
 namespace BackProyTesis.Data
 {
@@ -61,6 +63,42 @@ namespace BackProyTesis.Data
             ).ToListAsync();
 
             return vehiculosRegistrados;
+        }
+        //REPORTES
+        public IEnumerable<ReporteRankMarca> ReporteRankMarcas(string anio)
+        {
+            using (IDbConnection dbConnection = _context.Database.GetDbConnection())
+            {
+                dbConnection.Open();
+
+                string sqlQuery = @"
+                SELECT *
+                FROM (
+                    SELECT 
+                        CASE 
+                            WHEN INSTR(v.VHCSPCF_MARCA_DESCRIP, 'CHEVROLET') > 0 THEN 'CHEVROLET'
+                            ELSE v.VHCSPCF_MARCA_DESCRIP 
+                        END AS Marca,
+                        COUNT(DISTINCT v.VHCSPCF_PLACA) AS CantidadVehiculosConMarca
+                    FROM VEN_VHCSPCF v
+                    JOIN VEN_ENCFAC e ON e.ENCFAC_NUMERO = v.ENCFAC_NUMERO 
+                                        AND e.COM_CODIGO = v.COM_CODIGO 
+                                        AND e.ANIO = v.ANIO
+                    WHERE e.ANIO = :Anio
+                    GROUP BY 
+                        CASE 
+                            WHEN INSTR(v.VHCSPCF_MARCA_DESCRIP, 'CHEVROLET') > 0 THEN 'CHEVROLET'
+                            ELSE v.VHCSPCF_MARCA_DESCRIP 
+                        END
+                    ORDER BY CantidadVehiculosConMarca DESC
+                )
+                WHERE ROWNUM <= 10";
+
+                var parametros = new { Anio = anio };
+
+                var resultados = dbConnection.Query<ReporteRankMarca>(sqlQuery, parametros);
+                return resultados;
+            }
         }
     }
 }

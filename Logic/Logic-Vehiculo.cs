@@ -2,6 +2,7 @@
 using BackProyTesis.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace BackProyTesis.Logic
 {
@@ -32,6 +33,11 @@ namespace BackProyTesis.Logic
         public async Task<List<VenVhcspcf>?> BuscarPorCli(string anio, string cli)
         {
             return await _data.BuscarPorCli(anio,cli);
+        }
+        //REPORTES
+        public IEnumerable<ReporteRankMarca> ReporteRankMarcas(string anio)
+        {
+            return _data.ReporteRankMarcas(anio);
         }
     }
 }

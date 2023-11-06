@@ -57,5 +57,46 @@ namespace BackProyTesis.Controllers
         {
             return await _logic.ActualizarPorGarantia(fac);
         }
+        //REPORTE
+        [HttpGet("ReporteGeneral")]
+        public IActionResult ReportePorGrupo(string fechaInicio, string fechaFin)
+        {
+            try
+            {
+                var resultados = _logic.ReporteGeneral(fechaInicio, fechaFin);
+
+                if (resultados == null || !resultados.Any())
+                {
+                    return NotFound("No se encontraron resultados para los parámetros proporcionados.");
+                }
+
+                return Ok(resultados);
+            }
+            catch (Exception ex)
+            {
+                // Loguear el error
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+        [HttpGet("ReportePorCliente")]
+        public IActionResult ReportePorCliente(string fechaInicio, string fechaFin, string clienteCodigo)
+        {
+            try
+            {
+                var resultados = _logic.ReportePorCliente(fechaInicio, fechaFin, clienteCodigo);
+
+                if (resultados == null || !resultados.Any())
+                {
+                    return NotFound("No se encontraron resultados para los parámetros proporcionados.");
+                }
+
+                return Ok(resultados);
+            }
+            catch (Exception ex)
+            {
+                // Loguear el error
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
     }
 }
